@@ -18,6 +18,7 @@ public class Main {
         // TODO code application logic here
         
         System.out.println("Hello Lorenz"); //this is the second test
+        System.out.println("and here some changes!");
     }
     
 }
