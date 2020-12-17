@@ -171,7 +171,7 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
   private void btnUebernehmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUebernehmenActionPerformed
-        //this is a test
+        
       if (persCounter < 20) {
 
           persListe[persCounter] = new Person();
