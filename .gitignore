@@ -19,7 +19,7 @@
 *.tar.gz
 *.rar
 # imo unnecessary #
-*.xml
+*.xml # wird evtl. mal später benötigt #
 manifest.mf
 *.properties
 
