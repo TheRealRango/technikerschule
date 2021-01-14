@@ -47,8 +47,6 @@ public class GUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         bt_newgame = new javax.swing.JButton();
         bt_wurfspieler1 = new javax.swing.JButton();
         bt_wurfspieler2 = new javax.swing.JButton();
@@ -58,8 +56,9 @@ public class GUI extends javax.swing.JFrame {
         lb_wcounter1 = new javax.swing.JLabel();
         lb_wcounter2 = new javax.swing.JLabel();
         lb_wuerfel1 = new javax.swing.JLabel();
+        lb_ergebnis = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,11 +87,12 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel9.setText("Punkte");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
         bt_newgame.setText("Neues Spiel");
+        bt_newgame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_newgameActionPerformed(evt);
+            }
+        });
 
         bt_wurfspieler1.setText("wurf");
         bt_wurfspieler1.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public class GUI extends javax.swing.JFrame {
         lb_punktespieler2.setText("Punktestand Spieler2");
         lb_punktespieler2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lb_wuerfel2.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lb_wuerfel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         lb_wuerfel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_wuerfel2.setText("0");
         lb_wuerfel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -123,10 +123,13 @@ public class GUI extends javax.swing.JFrame {
 
         lb_wcounter2.setText("x. Wurf");
 
-        lb_wuerfel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lb_wuerfel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         lb_wuerfel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_wuerfel1.setText("0");
         lb_wuerfel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lb_ergebnis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_ergebnis.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,11 +139,29 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(214, 214, 214)
+                                        .addComponent(jLabel7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(bt_wurfspieler1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lb_wcounter1)))
+                                .addGap(77, 77, 77)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lb_wuerfel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(261, 261, 261)
+                                .addComponent(bt_newgame)))
+                        .addContainerGap(236, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jScrollPane1))
+                            .addComponent(lb_ergebnis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lb_nameSpieler1)
@@ -166,27 +187,7 @@ public class GUI extends javax.swing.JFrame {
                                         .addComponent(bt_wurfspieler2)
                                         .addGap(18, 18, 18)
                                         .addComponent(lb_wcounter2)))))
-                        .addGap(23, 23, 23))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(261, 261, 261)
-                                .addComponent(bt_newgame))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(214, 214, 214)
-                                        .addComponent(jLabel7))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(bt_wurfspieler1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lb_wcounter1)))
-                                .addGap(77, 77, 77)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lb_wuerfel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap(236, Short.MAX_VALUE))))
+                        .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +231,9 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lb_wuerfel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lb_wuerfel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(lb_ergebnis, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(bt_newgame)
                 .addGap(24, 24, 24))
         );
@@ -247,10 +248,17 @@ public class GUI extends javax.swing.JFrame {
         spieler2.setName(txf_spieler2.getText());
         lb_nameSpieler1.setText("Spieler 1: " + spieler1.getName());
         lb_nameSpieler2.setText("Spieler 2: " + spieler2.getName());
+        bt_NamenFestlegen.setEnabled(false);
+        txf_spieler1.setEnabled(false);
+        txf_spieler2.setEnabled(false);
 
 
     }//GEN-LAST:event_bt_NamenFestlegenActionPerformed
+    private void disablebuttons() {
+        bt_wurfspieler1.setEnabled(false);
+        bt_wurfspieler2.setEnabled(false);
 
+    }
     private void bt_wurfspieler1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_wurfspieler1ActionPerformed
         // TODO add your handling code here:
         wuerfeln.werfen();
@@ -265,6 +273,11 @@ public class GUI extends javax.swing.JFrame {
 
         wcounter1++;
         lb_wcounter1.setText(String.valueOf(wcounter1 + ". Wurf"));
+
+        if (spieler1.getPunkte() >= 10) {
+            lb_ergebnis.setText(spieler1.getName() + "hat gewonnen mit " + spieler1.getPunkte() + "Punkten");
+            disablebuttons();
+        }
 
 
     }//GEN-LAST:event_bt_wurfspieler1ActionPerformed
@@ -284,8 +297,30 @@ public class GUI extends javax.swing.JFrame {
         wcounter2++;
         lb_wcounter2.setText(String.valueOf(wcounter2 + ". Wurf"));
 
+        if (spieler2.getPunkte() >= 10) {
+            lb_ergebnis.setText(spieler2.getName() + "hat gewonnen mit " + spieler2.getPunkte() + "Punkten");
+            disablebuttons();
+        }
 
     }//GEN-LAST:event_bt_wurfspieler2ActionPerformed
+
+    private void bt_newgameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newgameActionPerformed
+        // TODO add your handling code here:
+        spieler1.setPunkte(0);
+        spieler2.setPunkte(0);
+        lb_ergebnis.setText(null);
+        lb_punktespieler1.setText("Punktestand Spieler1");
+        lb_punktespieler2.setText("Punktestand spieler2");
+        lb_wcounter1.setText("x. Wurf");
+        lb_wcounter2.setText("x. Wurf");
+        lb_wuerfel1.setText("0");
+        lb_wuerfel2.setText("0");
+        bt_wurfspieler1.setEnabled(true);
+        bt_wurfspieler2.setEnabled(true);
+        
+
+
+    }//GEN-LAST:event_bt_newgameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,8 +369,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lb_ergebnis;
     private javax.swing.JLabel lb_nameSpieler1;
     private javax.swing.JLabel lb_nameSpieler2;
     private javax.swing.JLabel lb_punktespieler1;
