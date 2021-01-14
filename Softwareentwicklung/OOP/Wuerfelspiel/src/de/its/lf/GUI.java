@@ -10,12 +10,13 @@ package de.its.lf;
  * @author lorenz
  */
 public class GUI extends javax.swing.JFrame {
-
+    
+    
+    //dasisteintest
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Wuerfel wuerfeln = new Wuerfel();
     private Spieler[] Spieler2;
-    private int spielerCounter = 0;
     private int wcounter1 = 0;
     private int wcounter2 = 0;
 
@@ -317,7 +318,6 @@ public class GUI extends javax.swing.JFrame {
         lb_wuerfel2.setText("0");
         bt_wurfspieler1.setEnabled(true);
         bt_wurfspieler2.setEnabled(true);
-        
 
 
     }//GEN-LAST:event_bt_newgameActionPerformed
