@@ -11,14 +11,15 @@ public class GUI extends javax.swing.JFrame {
 
     private final Person[] persListe = new Person[20];
     private int persCounter = 0;
-    private final DefaultListModel daten = new DefaultListModel();
+    private final DefaultListModel daten = new DefaultListModel(); //"daten" wird erstellt
 
     /**
      * Creates new form GUI
      */
+    //Constructor der GUI Klasse
     public GUI() {
-        initComponents();
-        lstOverview.setModel(daten);
+        initComponents(); //initialisiert die Oberfläche
+        lstOverview.setModel(daten); //Listbox wird mit "daten" befüllt
     }
 
     /**
@@ -45,6 +46,7 @@ public class GUI extends javax.swing.JFrame {
         txfPLZ = new javax.swing.JTextField();
         lblOrt = new javax.swing.JLabel();
         txfOrt = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         pnlOverview = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstOverview = new javax.swing.JList();
@@ -81,6 +83,14 @@ public class GUI extends javax.swing.JFrame {
 
         lblOrt.setText("Ort");
 
+        jButton1.setText("Anzeige  löschen");
+        jButton1.setActionCommand("Anzeige löschen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout onlDetailLayout = new javax.swing.GroupLayout(onlDetail);
         onlDetail.setLayout(onlDetailLayout);
         onlDetailLayout.setHorizontalGroup(
@@ -88,8 +98,6 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(onlDetailLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(onlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPLZ)
-                    .addComponent(lblOrt)
                     .addGroup(onlDetailLayout.createSequentialGroup()
                         .addGroup(onlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNachname)
@@ -105,7 +113,13 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(txfNachname)
                             .addComponent(txfOrt, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addComponent(btnUebernehmen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAnzeigen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAnzeigen, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addGroup(onlDetailLayout.createSequentialGroup()
+                        .addGroup(onlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPLZ)
+                            .addComponent(lblOrt)
+                            .addComponent(jButton1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         onlDetailLayout.setVerticalGroup(
@@ -139,7 +153,9 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(btnUebernehmen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAnzeigen)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         getContentPane().add(onlDetail);
@@ -161,7 +177,7 @@ public class GUI extends javax.swing.JFrame {
             pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOverviewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -176,7 +192,6 @@ public class GUI extends javax.swing.JFrame {
 
           persListe[persCounter] = new Person();
           persListe[persCounter].setVorname(txfVorname.getText());
-          //persListe[persCounter].vorname = txfVorname.getText();
           persListe[persCounter].setNachname(txfNachname.getText());
           persListe[persCounter].setKlasse(txfKlasse.getText());
           persListe[persCounter].setPlz(Integer.parseInt(txfPLZ.getText()));
@@ -185,6 +200,8 @@ public class GUI extends javax.swing.JFrame {
       } else {
           JOptionPane.showMessageDialog(this, "Kein Speicher vorhanden!");
       }
+      txfVorname.setText("");
+      txfNachname.setText(null);
 }//GEN-LAST:event_btnUebernehmenActionPerformed
 
   private void btnAnzeigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnzeigenActionPerformed
@@ -198,10 +215,16 @@ public class GUI extends javax.swing.JFrame {
       }
   }//GEN-LAST:event_btnAnzeigenActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        daten.clear();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnzeigen;
     private javax.swing.JButton btnUebernehmen;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblGebDatum;
     private javax.swing.JLabel lblKlasse;
