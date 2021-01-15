@@ -17,10 +17,8 @@ public class GUI extends javax.swing.JFrame {
     Spieler spieler2 = new Spieler();
     Wuerfel wuerfel1 = new Wuerfel();
     Wuerfel wuerfel2 = new Wuerfel();
-    //private Spieler[] Spieler2;
     private int wcounter1 = 0;
     private int wcounter2 = 0;
-    //private int tmppunkte = 0;
     boolean check = false;
 
     /**

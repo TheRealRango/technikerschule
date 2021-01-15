@@ -13,7 +13,7 @@ public class Spieler {
 //Attribute
     private String name;
     private int punkte;
-/*constructor
+/*constructor wird nicht benötigt
     public Spieler() {
     }
 */
