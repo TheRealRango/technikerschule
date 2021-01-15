@@ -5,20 +5,23 @@
  */
 package de.its.lf;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lorenz
  */
 public class GUI extends javax.swing.JFrame {
-    
-    
-    //dasisteintest
+
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
-    Wuerfel wuerfeln = new Wuerfel();
-    private Spieler[] Spieler2;
+    Wuerfel wuerfel1 = new Wuerfel();
+    Wuerfel wuerfel2 = new Wuerfel();
+    //private Spieler[] Spieler2;
     private int wcounter1 = 0;
     private int wcounter2 = 0;
+    //private int tmppunkte = 0;
+    boolean check = false;
 
     /**
      * Creates new form GUI
@@ -58,6 +61,7 @@ public class GUI extends javax.swing.JFrame {
         lb_wcounter2 = new javax.swing.JLabel();
         lb_wuerfel1 = new javax.swing.JLabel();
         lb_ergebnis = new javax.swing.JLabel();
+        lb_info = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,7 +71,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel2.setText("Jeder Spieler würfelt mit 2 Würfeln");
 
-        jLabel3.setText("Gewonnen hat der spieler, der zuerst 10 Punke erreicht.");
+        jLabel3.setText("Gewonnen hat der spieler, der zuerst 20 Punke erreicht.");
 
         lb_nameSpieler1.setText("Spieler1");
 
@@ -96,6 +100,7 @@ public class GUI extends javax.swing.JFrame {
         });
 
         bt_wurfspieler1.setText("wurf");
+        bt_wurfspieler1.setEnabled(false);
         bt_wurfspieler1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_wurfspieler1ActionPerformed(evt);
@@ -103,16 +108,19 @@ public class GUI extends javax.swing.JFrame {
         });
 
         bt_wurfspieler2.setText("wurf");
+        bt_wurfspieler2.setEnabled(false);
         bt_wurfspieler2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_wurfspieler2ActionPerformed(evt);
             }
         });
 
-        lb_punktespieler1.setText("Punktestand Spieler1");
+        lb_punktespieler1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lb_punktespieler1.setText("Punkte Spieler1");
         lb_punktespieler1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        lb_punktespieler2.setText("Punktestand Spieler2");
+        lb_punktespieler2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lb_punktespieler2.setText("Punkte Spieler2");
         lb_punktespieler2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lb_wuerfel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
@@ -129,8 +137,14 @@ public class GUI extends javax.swing.JFrame {
         lb_wuerfel1.setText("0");
         lb_wuerfel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        lb_ergebnis.setFont(new java.awt.Font("Harrington", 0, 18)); // NOI18N
         lb_ergebnis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb_ergebnis.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        lb_info.setForeground(new java.awt.Color(255, 0, 51));
+        lb_info.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_info.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        lb_info.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,7 +201,8 @@ public class GUI extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(bt_wurfspieler2)
                                         .addGap(18, 18, 18)
-                                        .addComponent(lb_wcounter2)))))
+                                        .addComponent(lb_wcounter2))))
+                            .addComponent(lb_info, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(23, 23, 23))))
         );
         layout.setVerticalGroup(
@@ -217,26 +232,31 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb_punktespieler1)
-                            .addComponent(lb_punktespieler2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bt_wurfspieler1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(bt_wurfspieler2)
-                                .addComponent(lb_wcounter2))
-                            .addComponent(lb_wcounter1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lb_wuerfel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lb_wuerfel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(lb_ergebnis, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bt_newgame)
-                .addGap(24, 24, 24))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lb_punktespieler1)
+                                    .addComponent(lb_punktespieler2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bt_wurfspieler1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(bt_wurfspieler2)
+                                        .addComponent(lb_wcounter2))
+                                    .addComponent(lb_wcounter1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(lb_wuerfel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lb_info, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_ergebnis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_newgame)
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lb_wuerfel1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
 
         pack();
@@ -252,6 +272,11 @@ public class GUI extends javax.swing.JFrame {
         bt_NamenFestlegen.setEnabled(false);
         txf_spieler1.setEnabled(false);
         txf_spieler2.setEnabled(false);
+        checknames();
+        if (check == true) {
+            bt_wurfspieler1.setEnabled(true);
+            bt_wurfspieler2.setEnabled(true);
+        }
 
 
     }//GEN-LAST:event_bt_NamenFestlegenActionPerformed
@@ -260,46 +285,84 @@ public class GUI extends javax.swing.JFrame {
         bt_wurfspieler2.setEnabled(false);
 
     }
+
+    private void resetwuerfel() {
+        lb_info.setText(null);
+        lb_wuerfel1.setText("0");
+        lb_wuerfel2.setText("0");
+
+    }
+
+    private boolean checknames() {
+
+        if (lb_nameSpieler1.getText() != "Spieler1" || lb_nameSpieler2.getText() != "Spieler2") {
+            check = true;
+
+        }
+        return check;
+    }
+
     private void bt_wurfspieler1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_wurfspieler1ActionPerformed
         // TODO add your handling code here:
-        wuerfeln.werfen();
-        lb_wuerfel1.setText(String.valueOf(wuerfeln.getZahl()));
-        spieler1.setPunkte(spieler1.getPunkte() + wuerfeln.getZahl());
+        resetwuerfel();
+        wuerfel1.werfen();
+        lb_wuerfel1.setText(String.valueOf(wuerfel1.getZahl()));
 
-        wuerfeln.werfen();
-        lb_wuerfel2.setText(String.valueOf(wuerfeln.getZahl()));
-        spieler1.setPunkte(spieler1.getPunkte() + wuerfeln.getZahl());
+        wuerfel2.werfen();
+        lb_wuerfel2.setText(String.valueOf(wuerfel2.getZahl()));
+
+        if (wuerfel1.getZahl() == wuerfel2.getZahl()) {
+            lb_info.setText("Sie haben einen Pasch gewürfelt! und verlieren somit alle Punkte");
+            spieler1.setPunkte(0);
+        } else if ((wuerfel1.getZahl() + wuerfel2.getZahl()) <= 6) {
+
+            lb_info.setText("Sie haben weniger als oder genau 6 gewürfelt! und bekommen somit keine Punkte");
+
+        } else {
+            spieler1.setPunkte(spieler1.getPunkte() + wuerfel1.getZahl() + wuerfel2.getZahl());
+        }
 
         lb_punktespieler1.setText(String.valueOf(spieler1.getPunkte()));
-
         wcounter1++;
         lb_wcounter1.setText(String.valueOf(wcounter1 + ". Wurf"));
 
-        if (spieler1.getPunkte() >= 10) {
-            lb_ergebnis.setText(spieler1.getName() + "hat gewonnen mit " + spieler1.getPunkte() + "Punkten");
+        bt_wurfspieler1.setEnabled(false);
+        bt_wurfspieler2.setEnabled(true);
+        if (spieler1.getPunkte() >= 20) {
+            lb_ergebnis.setText(spieler1.getName() + " hat gewonnen mit " + spieler1.getPunkte() + " Punkten");
             disablebuttons();
         }
-
-
     }//GEN-LAST:event_bt_wurfspieler1ActionPerformed
 
     private void bt_wurfspieler2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_wurfspieler2ActionPerformed
         // TODO add your handling code here:
-        wuerfeln.werfen();
-        lb_wuerfel1.setText(String.valueOf(wuerfeln.getZahl()));
-        spieler2.setPunkte(spieler2.getPunkte() + wuerfeln.getZahl());
 
-        wuerfeln.werfen();
-        lb_wuerfel2.setText(String.valueOf(wuerfeln.getZahl()));
-        spieler2.setPunkte(spieler2.getPunkte() + wuerfeln.getZahl());
+        resetwuerfel();
+        wuerfel1.werfen();
+        lb_wuerfel1.setText(String.valueOf(wuerfel1.getZahl()));
+
+        wuerfel2.werfen();
+        lb_wuerfel2.setText(String.valueOf(wuerfel2.getZahl()));
+
+        if (wuerfel1.getZahl() == wuerfel2.getZahl()) {
+            lb_info.setText("Sie haben einen Pasch gewürfelt! und verlieren somit alle Punkte");
+            spieler2.setPunkte(0);
+        } else if ((wuerfel1.getZahl() + wuerfel2.getZahl()) <= 6) {
+            lb_info.setText("Sie haben weniger als oder genau 6 gewürfelt! und bekommen somit keine Punkte");
+
+        } else {
+
+            spieler2.setPunkte(spieler2.getPunkte() + wuerfel1.getZahl() + wuerfel2.getZahl());
+        }
 
         lb_punktespieler2.setText(String.valueOf(spieler2.getPunkte()));
-
         wcounter2++;
         lb_wcounter2.setText(String.valueOf(wcounter2 + ". Wurf"));
 
-        if (spieler2.getPunkte() >= 10) {
-            lb_ergebnis.setText(spieler2.getName() + "hat gewonnen mit " + spieler2.getPunkte() + "Punkten");
+        bt_wurfspieler1.setEnabled(true);
+        bt_wurfspieler2.setEnabled(false);
+        if (spieler2.getPunkte() >= 20) {
+            lb_ergebnis.setText(spieler2.getName() + " hat gewonnen mit " + spieler2.getPunkte() + " Punkten");
             disablebuttons();
         }
 
@@ -314,6 +377,8 @@ public class GUI extends javax.swing.JFrame {
         lb_punktespieler2.setText("Punktestand spieler2");
         lb_wcounter1.setText("x. Wurf");
         lb_wcounter2.setText("x. Wurf");
+        wcounter1 = 0;
+        wcounter2 = 0;
         lb_wuerfel1.setText("0");
         lb_wuerfel2.setText("0");
         bt_wurfspieler1.setEnabled(true);
@@ -370,6 +435,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lb_ergebnis;
+    private javax.swing.JLabel lb_info;
     private javax.swing.JLabel lb_nameSpieler1;
     private javax.swing.JLabel lb_nameSpieler2;
     private javax.swing.JLabel lb_punktespieler1;

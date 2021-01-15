@@ -13,10 +13,10 @@ public class Spieler {
 //Attribute
     private String name;
     private int punkte;
-//constructor
+/*constructor
     public Spieler() {
     }
-
+*/
     //setter
     public void setName(String name) {
         this.name = name;

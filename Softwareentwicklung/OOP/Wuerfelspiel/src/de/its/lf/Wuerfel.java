@@ -15,10 +15,10 @@ public class Wuerfel {
 // Attribute
 
     private int zahl;
-//Constructor
-
+/*Constructor
     public Wuerfel() {
     }
+*/
 //getter 
 
     public int getZahl() {
