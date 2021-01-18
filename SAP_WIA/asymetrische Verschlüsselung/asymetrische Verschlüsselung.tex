@@ -1,0 +1,54 @@
+\documentclass[a4paper, 12pt, one column]{article}
+
+%% Language and font encodings. This says how to do hyphenation on end of lines.
+\usepackage[ngerman]{babel}
+\usepackage{natbib}
+\bibliographystyle{harvard}
+\bibliography{refs}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%% Sets page size and margins. You can edit this to your liking
+\usepackage[top=1.3cm, bottom=2.0cm, outer=2.5cm, inner=2.5cm, heightrounded,
+marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
+
+%% Useful packages
+\usepackage{graphicx} %allows you to use jpg or png images. PDF is still recommended
+\usepackage[colorlinks=False]{hyperref} % add links inside PDF files
+\usepackage{amsmath}  % Math fonts
+\usepackage{amsfonts} %
+\usepackage{amssymb}  %
+
+%% Citation package
+%\usepackage[authoryear]{natbib}
+%\bibliographystyle{abbrvnat}
+%\setcitestyle{authoryear,open={(},close={)}}
+
+
+\title{Asymetrische Verschlüsselung}
+\author{Lorenz Faber}
+
+\begin{document}
+	\maketitle
+	
+	%\begin{abstract}
+	%	Add abstract here
+	%\end{abstract}
+	
+	\section{Introduction}
+	
+	This is an example citation. See file refs.bib by clicking on ``Project'' on the top-left. 
+	
+	You can cite using \citet{Claydon17} to make a reference in the text. Or \citep{Claydon17} for a reference in parenthesis. 
+	
+	\section{Something}
+	
+	Add content
+	
+	\subsection{Sub-something}
+	
+	Add content
+	
+	\bibliography{refs}
+\end{document}
