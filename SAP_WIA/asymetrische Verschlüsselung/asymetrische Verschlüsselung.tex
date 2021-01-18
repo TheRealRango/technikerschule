@@ -20,10 +20,6 @@ marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
 \usepackage{amsfonts} %
 \usepackage{amssymb}  %
 
-%% Citation package
-%\usepackage[authoryear]{natbib}
-%\bibliographystyle{abbrvnat}
-%\setcitestyle{authoryear,open={(},close={)}}
 
 
 \title{Asymetrische Verschlüsselung}
@@ -36,19 +32,43 @@ marginparwidth=1.5cm, marginparsep=0.4cm, margin=2.5cm]{geometry}
 	%	Add abstract here
 	%\end{abstract}
 	
-	\section{Introduction}
+	\section{Einführung}
 	
-	This is an example citation. See file refs.bib by clicking on ``Project'' on the top-left. 
+	mit dem Zitat 
+	“Crypto will not be broken, it will be bypassed”
+	– Adi Shamir
 	
-	You can cite using \citet{Claydon17} to make a reference in the text. Or \citep{Claydon17} for a reference in parenthesis. 
+	Verschlüsselung wird nicht gebrochen, sie wird umgangen.
+	Die asymetrische Verschlüsselung
+	
+	You can cite using to make a reference in the text. Or for a reference in parenthesis. \cite{latexcompanion,knuthwebsite}
 	
 	\section{Something}
 	
-	Add content
+	Aldo ist cool
 	
 	\subsection{Sub-something}
 	
-	Add content
+	content here
 	
-	\bibliography{refs}
+	
+	%\bibliography{refs}
+	\medskip
+	
+	\begin{thebibliography}{9}
+		\bibitem{latexcompanion} 
+		Michel Goossens, Frank Mittelbach, and Alexander Samarin. 
+		\textit{The \LaTeX\ Companion}. 
+		Addison-Wesley, Reading, Massachusetts, 1993.
+		
+		\bibitem{einstein} 
+		Albert Einstein. 
+		\textit{Zur Elektrodynamik bewegter K{\"o}rper}. (German) 
+		[\textit{On the electrodynamics of moving bodies}]. 
+		Annalen der Physik, 322(10):891–921, 1905.
+		
+		\bibitem{knuthwebsite} 
+		Knuth: Computers and Typesetting,
+		\\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html (18.01.2021)}
+	\end{thebibliography}
 \end{document}
