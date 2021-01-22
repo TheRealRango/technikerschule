@@ -16,8 +16,16 @@ public class Ferienwohnung extends Unterkunft {
     private int maxPersonen;
     private static double endreinigung;
 
-    public Ferienwohnung(int anzahlWochen, int maxPersonen, int nummer, boolean behindertengerecht) {
+    public Ferienwohnung(int maxPersonen, int nummer, boolean behindertengerecht) {
         super(nummer, behindertengerecht);
+        this.maxPersonen = maxPersonen;
+    }
+
+    public int getMaxPersonen() {
+        return maxPersonen;
+    }
+
+    public void setMaxPersonen(int maxPersonen) {
         this.maxPersonen = maxPersonen;
     }
 
@@ -44,11 +52,22 @@ public class Ferienwohnung extends Unterkunft {
     public static void setEndreinigung(double endreinigung) {
         Ferienwohnung.endreinigung = endreinigung;
     }
-    
-    
+
     @Override
     public double uebernachtungspreisBerechnen() {
-        return 0;
+        double ergebnis =getWochenPreis();
+        
+        if (isFruehstueck() == true) {
+            
+            ergebnis =(ergebnis + (getFruehstueckspreis()*getMaxPersonen()*7));
+        }
+        
+        ergebnis = ergebnis * getAnzahlWochen();
+        
+        //endreinigung
+        ergebnis = ergebnis + getEndreinigung();
+
+        return ergebnis;
     }
 
 }
