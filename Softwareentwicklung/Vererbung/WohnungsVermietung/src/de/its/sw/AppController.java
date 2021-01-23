@@ -11,6 +11,7 @@ public class AppController {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
         Unterkunft.setFruehstueckspreis(8);
         Zimmer.setTagespreis(85);
         Ferienwohnung.setWochenPreis(685);

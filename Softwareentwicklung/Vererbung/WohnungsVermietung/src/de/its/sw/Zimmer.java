@@ -50,10 +50,10 @@ public class Zimmer extends Unterkunft {
 
     @Override
     public double uebernachtungspreisBerechnen() {
-        double ergebnis = 0;
+        double ergebnis = getTagespreis();
 
         if (isMeerblick()) {
-            ergebnis = getTagespreis() + 10;
+            ergebnis = ergebnis+ 10;
         }
         if (!isAlsEinzelzimmer() && isFruehstueck()) {
             ergebnis = ergebnis + (getFruehstueckspreis() * 2);
