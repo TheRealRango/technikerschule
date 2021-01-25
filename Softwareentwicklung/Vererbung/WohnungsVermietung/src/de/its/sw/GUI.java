@@ -20,8 +20,7 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         Unterkunft.setFruehstueckspreis(8);
         Zimmer.setTagespreis(85);
-        //bt_z_berechnekosten.setEnabled(false);
-        //checkparams();
+        
     }
 
     /**
@@ -64,6 +63,8 @@ public class GUI extends javax.swing.JFrame {
         jLabel1.setText("Preisauskunft");
 
         jLabel2.setText("Frühstückspreis");
+
+        txf_fruehstueckspreis.setText("8");
 
         jTabbedPane1.setToolTipText("Zimmer");
         jTabbedPane1.setName(""); // NOI18N
@@ -139,25 +140,26 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txf_z_anzahltage)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lb_z_error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_z_berechnekosten, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_z_error, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_z_berechnekosten, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txf_zimmernr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txf_zimmernr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -186,7 +188,7 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(lb_z_error, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Zimmer", jPanel1);
@@ -217,7 +219,7 @@ public class GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(401, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txf_fruehstueckspreis, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +243,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txf_fruehstueckspreis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
 
@@ -252,18 +254,18 @@ public class GUI extends javax.swing.JFrame {
     public boolean checkparams() {
         //bt_z_berechnekosten.setEnabled(false);
         boolean b;
-        //boolean c;
-        do {
+        
             if (txf_z_anzahltage.getText().isEmpty() || (txf_zimmernr.getText().isEmpty())) {
                 lb_z_error.setText("Bitte füllen Sie Zimmernummer und Tage aus");
-                //
+                
                 b = false;
 
             } else {
+                lb_z_error.setText("");
                 b = true;
 
             }
-        } while (b == false);
+        
         return b;
     }
     private void bt_z_berechnekostenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_z_berechnekostenActionPerformed
@@ -271,15 +273,17 @@ public class GUI extends javax.swing.JFrame {
         double ergebnis;
         checkparams();
         if (checkparams() == true) {
-
+            
             Zimmer zimmer1 = new Zimmer(cb_z_meerblick.isSelected(), Integer.parseInt(txf_zimmernr.getText()), cb_z_behindert.isSelected());
+            Unterkunft.setFruehstueckspreis(Integer.parseInt(txf_fruehstueckspreis.getText()));
             zimmer1.setAnzahlTage(Integer.parseInt(txf_z_anzahltage.getText()));
             zimmer1.setAlsEinzelzimmer(cb_z_einzelzimmer.isSelected());
             zimmer1.setFruehstueck(cb_z_fruehstueck.isSelected());
             zimmer1.uebernachtungspreisBerechnen();
             ergebnis = zimmer1.uebernachtungspreisBerechnen();
-            //txa_z_anzeigekosten.setText(String.valueOf(Zimmer.getTagespreis()));
-            txa_z_anzeigekosten.setText(String.valueOf(ergebnis));
+            
+            txa_z_anzeigekosten.setText("Dieses Zimmer mit der gewünschent Auswal kostet: \n" + String.valueOf(ergebnis) + "€");
+
         }
 
     }//GEN-LAST:event_bt_z_berechnekostenActionPerformed

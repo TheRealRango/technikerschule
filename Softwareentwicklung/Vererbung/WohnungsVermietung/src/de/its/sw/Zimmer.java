@@ -62,7 +62,7 @@ public class Zimmer extends Unterkunft {
             ergebnis = ergebnis - 30;
             ergebnis = ergebnis + getFruehstueckspreis();
         }
-        if (isAlsEinzelzimmer()) {
+        if (isAlsEinzelzimmer() && !isFruehstueck()) {
             ergebnis = ergebnis - 30;
 
         }
