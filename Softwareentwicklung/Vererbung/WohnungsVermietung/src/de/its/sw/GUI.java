@@ -271,7 +271,7 @@ public class GUI extends javax.swing.JFrame {
     private void bt_z_berechnekostenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_z_berechnekostenActionPerformed
         // TODO add your handling code here:
         double ergebnis;
-        checkparams();
+        
         if (checkparams() == true) {
             
             Zimmer zimmer1 = new Zimmer(cb_z_meerblick.isSelected(), Integer.parseInt(txf_zimmernr.getText()), cb_z_behindert.isSelected());
