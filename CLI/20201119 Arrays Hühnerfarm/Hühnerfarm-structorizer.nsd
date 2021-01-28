@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:nsd="https://structorizer.fisch.lu" version="3.30-11" preRepeat="until " postFor="to" preReturn="return" postForIn="in" preWhile="while " output="OUTPUT" input="INPUT" preFor="for" preExit="exit" preLeave="leave" ignoreCase="true" preThrow="throw" preForIn="foreach" stepFor="by" author="lorenz" created="2020-11-19" changedby="lorenz" changed="2020-11-19" origin="Structorizer 3.30-11" text="&#34;Hühnerfarm&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<instruction text="&#34;Variablen&#34;,&#34;eiereingabe Fließkommazahl&#34;,&#34;Counter Ganzzahl&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+		<repeat text="&#34;until eiereingabe != 0&#34;" comment="&#34;&#34;" color="ffffff" disabled="0">
+			<qRepeat>
+				<instruction text="&#34;Ausgabe: &#34;&#34;Geben Sie das Gewicht ein&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+				<instruction text="&#34;Eingabe: Eiereingabe&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+				<alternative text="&#34;Gewicht &#60; 45&#34;" comment="&#34;&#34;" color="ffffff" disabled="0">
+					<qTrue>
+						<instruction text="&#34;Ausgabe: &#34;&#34;Dieses Ei ist Klasse C&#34;,&#34;Counter +1&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+					</qTrue>
+					<qFalse>
+						<alternative text="&#34;Gewicht &#60; 55&#34;" comment="&#34;&#34;" color="ffffff" disabled="0">
+							<qTrue>
+								<instruction text="&#34;Ausgabe: &#34;&#34;Dieses Ei ist Klasse B&#34;&#34;&#34;,&#34;Counter +1&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+							</qTrue>
+							<qFalse>
+								<instruction text="&#34;Ausgabe: &#34;&#34;Dieses Ei ist Klasse A&#34;&#34;&#34;,&#34;Counter +1&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+							</qFalse>
+						</alternative>
+					</qFalse>
+				</alternative>
+			</qRepeat>
+		</repeat>
+		<instruction text="&#34;Ausgabe: &#34;&#34;Es wurden insgesamt&#34;&#34; + Counter + &#34;&#34;Eier gezählt&#34;&#34;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+	</children>
+</root>

@@ -1,0 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package fahrenheitrechner;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author troed
+ */
+public class Fahrenheitrechner {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // Variablendeklaration
+        Double InputCelsius;
+        Double OutputFarenheit;
+        Scanner EingabeInputCelsius = new Scanner(System.in);
+        
+        
+        System.out.println("Fahrenheitrechner");
+        System.out.println("Temperatur in °C eingeben");
+        InputCelsius=EingabeInputCelsius.nextDouble();
+        System.out.println("Ihre Eingabe von " + InputCelsius + "°C entspricht");
+        
+        //Berechnung °C -> Fahrenheit
+        OutputFarenheit = InputCelsius * 9/5 + 32;
+        
+        //Ausgabe Ergebnis
+        System.out.println(OutputFarenheit + " Fahrenheit");
+    }
+    
+}
