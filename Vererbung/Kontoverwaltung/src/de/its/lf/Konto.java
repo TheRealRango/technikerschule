@@ -10,6 +10,7 @@ package de.its.lf;
  * @author lorenz
  */
 public class Konto {
+
     double guthaben;
     int kontonummer;
 
@@ -17,17 +18,18 @@ public class Konto {
         return guthaben;
     }
 
-    public void setGuthaben(double guthaben) {
-        this.guthaben = guthaben;
+    public void addGuthaben(double betrag) {
+        guthaben = guthaben + betrag;
     }
 
-    public int getKontonummer() {
-        return kontonummer;
-    }
-
-    public void setKontonummer(int kontonummer) {
-        this.kontonummer = kontonummer;
+    public void removeGuthaben(double betrag) {
+        guthaben = guthaben - betrag;
     }
     
+    public void ueberweise(double betrag){
+        
+    }
+    public void abrechnen(){
+        
+    }
 }
-

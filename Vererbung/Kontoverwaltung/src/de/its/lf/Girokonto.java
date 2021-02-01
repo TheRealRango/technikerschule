@@ -9,6 +9,21 @@ package de.its.lf;
  *
  * @author lorenz
  */
-public class Girokonto {
+public class Girokonto extends Sparkonto{
+    private double dispohoehe;
+
+    public double getDispohoehe() {
+        return dispohoehe;
+    }
+
+    public void setDispohoehe(double dispohoehe) {
+        this.dispohoehe = dispohoehe;
+    }
+
+    @Override
+    public void abrechnen() {
+        super.abrechnen(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
