@@ -49,7 +49,7 @@ public class GUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static List<Person> personen = new ArrayList<Person>();
+    //public static List<Person> personen = new ArrayList<Person>();
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -75,12 +75,13 @@ public class GUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        
-        Girokonto giro1 = new Girokonto(100, 001, 0.0025, 0.1199);
-        Sparkonto spar1 = new Sparkonto(200, 010, 0.02);
-        Festgeldkonto fest1 = new Festgeldkonto(300, 100, 6);
         Person person1 = new Person(1000, "Faber", "Lorenz", 3000);
-        //personen.add(new Person(1000, "Faber", "Lorenz"));
+        Girokonto giro1 = new Girokonto(001, 100, 3*3000);
+        Sparkonto spar1 = new Sparkonto(010, 0);
+        Festgeldkonto fest1 = new Festgeldkonto(100, 0, 6);
+        
+        //personen.add(new Person(1000, "Faber", "Lorenz", 3000));
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -13,8 +13,8 @@ public class Girokonto extends Sparkonto {
 
     private double dispohoehe;
 
-    public Girokonto(double guthaben, int kontonummer, double habenzins, double dispohoehe) {
-        super(guthaben, kontonummer, habenzins);
+    public Girokonto(int kontonummer, double guthaben, double dispohoehe) {
+        super(kontonummer, guthaben);
 
         this.dispohoehe = dispohoehe;
 
@@ -26,11 +26,12 @@ public class Girokonto extends Sparkonto {
 
     public void setDispohoehe(double dispohoehe) {
         this.dispohoehe = dispohoehe;
-        
+
     }
 
     @Override
     public void ueberweise(double betrag, Konto konto) {
+        super.ueberweise(betrag, konto); //To change body of generated methods, choose Tools | Templates.
         if (getGuthaben() - betrag > dispohoehe) {
             if (konto.getClass().getName().equals("Festgeldkonto")) {
                 if (betrag >= 5000) {
@@ -43,12 +44,12 @@ public class Girokonto extends Sparkonto {
                 konto.addGuthaben(betrag);
             }
         }
-        super.ueberweise(betrag, konto); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void abrechnen() {
-
+        super.abrechnen(); //To change body of generated methods, choose Tools | Templates.
         if (getGuthaben() > 0) {
             addGuthaben(getGuthaben() * 0.25);
         } else if (getGuthaben() < 0) {
@@ -56,7 +57,7 @@ public class Girokonto extends Sparkonto {
             removeGuthaben(getGuthaben() * 0.1199);
 
         }
-        super.abrechnen(); //To change body of generated methods, choose Tools | Templates.
+
     }
 
 }

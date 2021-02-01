@@ -13,8 +13,8 @@ public class Festgeldkonto extends Konto {
 
     private int laufzeit;
 
-    public Festgeldkonto(double guthaben, int kontonummer, int laufzeit) {
-        super(guthaben, kontonummer);
+    public Festgeldkonto(int kontonummer, double guthaben, int laufzeit) {
+        super(kontonummer, guthaben);
         this.laufzeit = laufzeit;
     }
 
@@ -25,6 +25,8 @@ public class Festgeldkonto extends Konto {
     public void setLaufzeit(int laufzeit) {
         this.laufzeit = laufzeit;
     }
+    
+    
 
     @Override
     public void abrechnen() {
@@ -41,10 +43,10 @@ public class Festgeldkonto extends Konto {
         }
 
     }
-
+    
     @Override
     public void ueberweise(double betrag, Konto konto) {
-        if (konto.getClass().getName().equals("Girokonto") && laufzeit <= 0) {
+        if (konto.getClass().getName().equals("Girokonto") && laufzeit <= 0 && betrag<=getGuthaben()) {
             removeGuthaben(betrag);
             konto.addGuthaben(betrag);
         }

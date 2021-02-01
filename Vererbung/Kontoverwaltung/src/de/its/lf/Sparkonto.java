@@ -13,9 +13,8 @@ public class Sparkonto extends Konto {
 
     private double habenzins;
 
-    public Sparkonto(double guthaben, int kontonummer, double habenzins) {
-        super(guthaben, kontonummer);
-        this.habenzins = habenzins;
+    public Sparkonto(int kontonummer, double guthaben) {
+        super(kontonummer, guthaben);
 
     }
 

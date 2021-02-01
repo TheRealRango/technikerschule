@@ -14,21 +14,23 @@ public abstract class Konto {
     private double guthaben;
     private int kontonummer;
     private int personID;
-    
-    public Konto(double guthaben, int kontonummer){
+
+    public Konto(int kontonummer, double guthaben) {
         this.guthaben = guthaben;
         this.kontonummer = kontonummer;
         //this.personID = personID;
-        
+
     }
 
+    /*
     public boolean isOwner(int personID) {
-        if (personID==this.personID){
+        if (personID == this.personID) {
             return true;
-            
+
         }
         return false;
     }
+     */
     public double getGuthaben() {
         return guthaben;
     }
@@ -40,8 +42,9 @@ public abstract class Konto {
     public void removeGuthaben(double betrag) {
         guthaben = guthaben - betrag;
     }
-    
-    public abstract void ueberweise (double betrag, Konto konto);
-    public abstract void abrechnen();      
-    
+
+    public abstract void ueberweise(double betrag, Konto konto);
+
+    public abstract void abrechnen();
+
 }

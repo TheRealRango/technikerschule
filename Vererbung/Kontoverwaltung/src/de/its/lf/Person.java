@@ -30,7 +30,7 @@ public class Person {
     }
 
     public void addKonto(Konto k) {
-        
+
         konten.add(k);
 
     }
