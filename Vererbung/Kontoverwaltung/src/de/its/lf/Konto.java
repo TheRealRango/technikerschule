@@ -9,11 +9,26 @@ package de.its.lf;
  *
  * @author lorenz
  */
-public class Konto {
+public abstract class Konto {
 
-    double guthaben;
-    int kontonummer;
+    private double guthaben;
+    private int kontonummer;
+    private int personID;
+    
+    public Konto(double guthaben, int kontonummer){
+        this.guthaben = guthaben;
+        this.kontonummer = kontonummer;
+        //this.personID = personID;
+        
+    }
 
+    public boolean isOwner(int personID) {
+        if (personID==this.personID){
+            return true;
+            
+        }
+        return false;
+    }
     public double getGuthaben() {
         return guthaben;
     }
@@ -26,10 +41,7 @@ public class Konto {
         guthaben = guthaben - betrag;
     }
     
-    public void ueberweise(double betrag){
-        
-    }
-    public void abrechnen(){
-        
-    }
+    public abstract void ueberweise (double betrag, Konto konto);
+    public abstract void abrechnen();      
+    
 }

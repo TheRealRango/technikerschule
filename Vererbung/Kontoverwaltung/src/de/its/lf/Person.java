@@ -5,14 +5,39 @@
  */
 package de.its.lf;
 
+import java.util.*;
+
 /**
  *
  * @author lorenz
  */
 public class Person {
+
     private int personID;
     private String name;
     private String vorname;
+    private double gehalt;
+
+    private List<Konto> konten;
+
+    public Person(int personID, String name, String vorname, double Gehalt) {
+        this.personID = personID;
+        this.name = name;
+        this.vorname = vorname;
+        this.gehalt = gehalt;
+        konten = new ArrayList<Konto>();
+
+    }
+
+    public void addKonto(Konto k) {
+        
+        konten.add(k);
+
+    }
+
+    public List getKonto() {
+        return konten;
+    }
 
     public int getPersonID() {
         return personID;
@@ -37,10 +62,5 @@ public class Person {
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
-    
-    
-    
-    
-    
-    
+
 }

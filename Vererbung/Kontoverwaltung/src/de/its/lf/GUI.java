@@ -5,6 +5,9 @@
  */
 package de.its.lf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author lorenz
@@ -17,7 +20,7 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,10 +45,12 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     /**
      * @param args the command line arguments
      */
+    public static List<Person> personen = new ArrayList<Person>();
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -69,7 +74,13 @@ public class GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        
+        Girokonto giro1 = new Girokonto(100, 001, 0.0025, 0.1199);
+        Sparkonto spar1 = new Sparkonto(200, 010, 0.02);
+        Festgeldkonto fest1 = new Festgeldkonto(300, 100, 6);
+        Person person1 = new Person(1000, "Faber", "Lorenz", 3000);
+        //personen.add(new Person(1000, "Faber", "Lorenz"));
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -10,19 +10,36 @@ package de.its.lf;
  * @author lorenz
  */
 public class Sparkonto extends Konto {
-    private int habenzins;
 
-    public int getHabenzins() {
+    private double habenzins;
+
+    public Sparkonto(double guthaben, int kontonummer, double habenzins) {
+        super(guthaben, kontonummer);
+        this.habenzins = habenzins;
+
+    }
+
+    public double getHabenzins() {
         return habenzins;
     }
 
-    public void setHabenzins(int habenzins) {
+    public void setHabenzins(double habenzins) {
         this.habenzins = habenzins;
     }
 
     @Override
     public void abrechnen() {
-        super.abrechnen(); //To change body of generated methods, choose Tools | Templates.
+
+        addGuthaben(getGuthaben() * 0.02);
+
     }
-    
+
+    @Override
+    public void ueberweise(double betrag, Konto konto) {
+        if (konto.getClass().getName().equals("Girokonto") && betrag <= getGuthaben()) {
+            removeGuthaben(betrag);
+            konto.addGuthaben(betrag);
+        }
+    }
+
 }
