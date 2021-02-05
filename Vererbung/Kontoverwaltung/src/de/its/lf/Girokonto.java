@@ -51,10 +51,10 @@ public class Girokonto extends Sparkonto {
     public void abrechnen() {
         super.abrechnen(); //To change body of generated methods, choose Tools | Templates.
         if (getGuthaben() > 0) {
-            addGuthaben(getGuthaben() * 0.25);
+            addGuthaben(getGuthaben() * 0.25 /365);
         } else if (getGuthaben() < 0) {
 
-            removeGuthaben(getGuthaben() * 0.1199);
+            removeGuthaben(getGuthaben() * 0.1199 /365);
 
         }
 

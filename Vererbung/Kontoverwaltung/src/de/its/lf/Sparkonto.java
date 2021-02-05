@@ -32,10 +32,17 @@ public class Sparkonto extends Konto {
         addGuthaben(getGuthaben() * 0.02);
 
     }
-
+    
+    @Override
+    public void removeGuthaben(double betrag){
+        if ((getGuthaben() -betrag) > 0) {
+            super.removeGuthaben(betrag);
+        }
+    }
+    
     @Override
     public void ueberweise(double betrag, Konto konto) {
-        if (konto.getClass().getName().equals("Girokonto") && betrag <= getGuthaben()) {
+        if (konto.getClass().getName().equals("Girokonto") && betrag <= getGuthaben()) { //konto instanceof Girokonto
             removeGuthaben(betrag);
             konto.addGuthaben(betrag);
         }
