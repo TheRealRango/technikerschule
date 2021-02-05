@@ -31,6 +31,16 @@ public abstract class Konto {
         return false;
     }
      */
+    
+    
+    public int getKontonummer() {
+        return kontonummer;
+    }
+
+    public void setKontonummer(int kontonummer) {
+        this.kontonummer = kontonummer;
+    }
+    
     public double getGuthaben() {
         return guthaben;
     }
@@ -44,6 +54,7 @@ public abstract class Konto {
     }
 
     public abstract void ueberweise(double betrag, Konto konto);
+
 
     public abstract void abrechnen();
 

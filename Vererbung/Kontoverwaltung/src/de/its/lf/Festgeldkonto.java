@@ -15,7 +15,9 @@ public class Festgeldkonto extends Konto {
 
     public Festgeldkonto(int kontonummer, double guthaben, int laufzeit) {
         super(kontonummer, guthaben);
-        this.laufzeit = laufzeit;
+        if (laufzeit == 6 || laufzeit == 12 || laufzeit == 24) {
+            setLaufzeit(laufzeit);
+        }
     }
 
     public int getLaufzeit() {
@@ -23,30 +25,32 @@ public class Festgeldkonto extends Konto {
     }
 
     public void setLaufzeit(int laufzeit) {
-        this.laufzeit = laufzeit;
+        if (laufzeit == 6 || laufzeit == 12 || laufzeit == 24) {
+            this.laufzeit = laufzeit;
+        } else {
+            this.laufzeit = 6;
+        }
     }
-    
-    
 
     @Override
     public void abrechnen() {
 
         if (laufzeit == 6) {
 
-            addGuthaben(getGuthaben() * 0.04);
+            addGuthaben(getGuthaben() * 0.04 / 365);
         } else if (laufzeit == 12) {
 
-            addGuthaben(getGuthaben() * 0.045);
+            addGuthaben(getGuthaben() * 0.045 / 365);
         } else if (laufzeit == 24) {
 
-            addGuthaben(getGuthaben() * 0.05);
+            addGuthaben(getGuthaben() * 0.05 / 365);
         }
 
     }
-    
+
     @Override
     public void ueberweise(double betrag, Konto konto) {
-        if (konto.getClass().getName().equals("Girokonto") && laufzeit <= 0 && betrag<=getGuthaben()) {
+        if (konto.getClass().getName().equals("Girokonto") && laufzeit <= 0 && betrag <= getGuthaben()) {
             removeGuthaben(betrag);
             konto.addGuthaben(betrag);
         }
