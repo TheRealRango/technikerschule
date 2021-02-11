@@ -57,5 +57,7 @@ public abstract class Konto {
 
 
     public abstract void abrechnen();
+    
+    public abstract String getTyp();
 
 }

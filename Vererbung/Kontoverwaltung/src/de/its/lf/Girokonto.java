@@ -59,5 +59,8 @@ public class Girokonto extends Sparkonto {
         }
 
     }
+    public String getTyp() {
+        return "Girokonto";
+    }
 
 }

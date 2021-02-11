@@ -30,17 +30,28 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Kontoverwaltung");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(513, Short.MAX_VALUE))
         );
 
         pack();
@@ -74,11 +85,23 @@ public class GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+        //erstellen der Konten und Personen
         Person person1 = new Person(1000, "Faber", "Lorenz", 3000);
-        Girokonto giro1 = new Girokonto(001, 100, 3*3000);
-        Sparkonto spar1 = new Sparkonto(010, 0);
-        Festgeldkonto fest1 = new Festgeldkonto(100, 0, 6);
+        Girokonto giro1 = new Girokonto(001, 100, 3*3000);     
+        Sparkonto spar1 = new Sparkonto(10, 0);
+        Festgeldkonto fest1 = new Festgeldkonto(100, 5000, 6);
+        //hinzufügen der konten zur Person
+        person1.addKonto(giro1);
+        person1.addKonto(spar1);
+        person1.addKonto(fest1);
+        
+        ArrayList konten = person1.getKonten();
+        for (int i = 0; i < person1.getKonten().size(); i++) {
+            Konto konto = person1.getKonten().get(i);
+            System.out.println(person1.getName() + "(Kontostand)" + konto.getTyp() +" Kontonummer" + konto.getKontonummer() + "Guthaben" +  konto.getGuthaben());
+            fest1.abrechnen();
+           System.out.println(person1.getName() + "(Kontostand)" + konto.getTyp() +" " + konto.getGuthaben());
+        }
         
         //personen.add(new Person(1000, "Faber", "Lorenz", 3000));
         
@@ -91,5 +114,6 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

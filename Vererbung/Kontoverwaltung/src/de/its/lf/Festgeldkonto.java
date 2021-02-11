@@ -56,4 +56,9 @@ public class Festgeldkonto extends Konto {
         }
     }
 
+    @Override
+    public String getTyp() {
+        return "Festgeldkonto";
+    }
+
 }
