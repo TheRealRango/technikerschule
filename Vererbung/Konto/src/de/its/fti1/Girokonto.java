@@ -43,8 +43,5 @@ public class Girokonto extends Sparkonto {
     public String getTyp() {
         return "Girokonto";
     }
-    /*
-    public String toString() {
-        return getKontonummer() + ": " + getGuthaben() + ", " + getDispohoehe();
-    }*/
+    
 }

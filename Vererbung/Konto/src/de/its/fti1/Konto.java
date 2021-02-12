@@ -50,4 +50,8 @@ public abstract class Konto {
     public abstract boolean pruefeAbhebung(double betrag);
 
     public abstract String getTyp();
+    
+    public String toString() {
+        return getTyp() + " Nummer: " + getKontonummer() + "  Guthaben: " + getGuthaben() + " € ";
+    }
 }
