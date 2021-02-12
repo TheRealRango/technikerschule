@@ -8,7 +8,7 @@ public class Sparkonto extends Konto {
 
     private double habenzins;
 
-    public Sparkonto(int KONTONUMMER, double habenzins) {
+    public Sparkonto(double habenzins, int KONTONUMMER) {
         super(KONTONUMMER);
         setHabenzins(habenzins);
     }
@@ -41,9 +41,9 @@ public class Sparkonto extends Konto {
             super.ueberweise(betrag, zielKonto);
         }
     }
-
+    
     @Override
-    public String getTyp() {
+    public String getTyp(){
         return "Sparkonto";
     }
 }

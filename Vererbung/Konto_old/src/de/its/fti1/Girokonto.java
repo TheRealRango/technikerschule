@@ -8,8 +8,8 @@ public class Girokonto extends Sparkonto {
 
     private double dispohoehe;
 
-    public Girokonto(int KONTONUMMER, double dispohoehe, double habenzins) {
-        super(KONTONUMMER, habenzins);
+    public Girokonto(double dispohoehe, double habenzins, int KONTONUMMER) {
+        super(habenzins, KONTONUMMER);
         this.dispohoehe = dispohoehe;
     }
 
@@ -43,8 +43,4 @@ public class Girokonto extends Sparkonto {
     public String getTyp() {
         return "Girokonto";
     }
-    /*
-    public String toString() {
-        return getKontonummer() + ": " + getGuthaben() + ", " + getDispohoehe();
-    }*/
 }

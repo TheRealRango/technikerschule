@@ -1,17 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package de.its.fti1;
 
 import java.util.ArrayList;
 
 /**
  *
- * @author FTI1
+ * @author Ibrahim Türk
  */
 public class Person {
 
     private final int personID;
     private String name;
     private String vorname;
-    private final ArrayList<Konto> konten; // <Konto> führt einen Typecast durch, d.h. alle gespeicherten Objekte werden auf den Typ Konto hin überprüft
+    private ArrayList<Konto> konten; // <Konto> führt einen Typecast durch, d.h. alle gespeicherten Objekte werden auf den Typ Konto hin überprüft
 
     public Person(int personID, String name, String vorname) {
         this.personID = personID;
@@ -24,11 +29,8 @@ public class Person {
         konten.add(konto);
     }
 
-    public Konto[] getKonten() {
-        // legt ein leeres Array an
-        Konto[] kontenArray = new Konto[this.konten.size()];
-        // füllt das Array mit den Referenzen aus der ArrayList
-        return konten.toArray(kontenArray);
+    public ArrayList<Konto> getKonten() {
+        return konten;
     }
 
     public int getPersonID() {
@@ -50,7 +52,5 @@ public class Person {
     public void setVorname(String vorname) {
         this.vorname = vorname;
     }
-    public String toString(){
-        return getPersonID() + ": " + getName() + ", "+ getVorname();
-    }
+
 }

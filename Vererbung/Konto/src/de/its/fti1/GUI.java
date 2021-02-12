@@ -1,21 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.its.fti1;
 
 /**
  *
- * @author lorenz
+ * @author Oliver Schwahlen
  */
 public class GUI extends javax.swing.JFrame {
+
+    private Person[] personen;
 
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        this.erzeugeDaten();
     }
 
     /**
@@ -27,55 +25,64 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        list_persons = new javax.swing.JList<>();
+        lstPersonen = new javax.swing.JList();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        list_konten = new javax.swing.JList<>();
-        bt_ueberweisen = new javax.swing.JButton();
-        bt_einzahlen = new javax.swing.JButton();
-        bt_auszahlen = new javax.swing.JButton();
+        lstGirokonten = new javax.swing.JList();
+        btAbrechnen = new javax.swing.JButton();
+        pnlSteuerung = new javax.swing.JPanel();
+        btEinzahlen = new javax.swing.JButton();
+        btAuszahlen = new javax.swing.JButton();
+        btÜberweisen = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txf_betrag = new javax.swing.JTextField();
-        bt_abrechnen = new javax.swing.JButton();
+        tfBetrag = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kontoverwaltung");
-        setName("Kontoverwaltung"); // NOI18N
+
+        lstPersonen.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        lstPersonen.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPersonenValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(lstPersonen);
 
         jLabel1.setText("Personen");
 
-        list_persons.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(list_persons);
-
         jLabel2.setText("Konten der Person");
 
-        list_konten.setModel(new javax.swing.AbstractListModel<String>() {
+        lstGirokonten.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(list_konten);
+        jScrollPane2.setViewportView(lstGirokonten);
 
-        bt_ueberweisen.setText("Überweisen");
-        bt_ueberweisen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_ueberweisenActionPerformed(evt);
-            }
-        });
+        btAbrechnen.setText("abrechnen");
 
-        bt_einzahlen.setText("einzahlen");
+        pnlSteuerung.setLayout(new java.awt.GridLayout(2, 3, 5, 0));
 
-        bt_auszahlen.setText("auszahlen");
+        btEinzahlen.setText("einzahlen");
+        pnlSteuerung.add(btEinzahlen);
+
+        btAuszahlen.setText("auszahlen");
+        pnlSteuerung.add(btAuszahlen);
+
+        btÜberweisen.setText("überweisen");
+        pnlSteuerung.add(btÜberweisen);
 
         jLabel3.setText("Betrag");
+        pnlSteuerung.add(jLabel3);
 
-        bt_abrechnen.setText("abrechnen");
+        tfBetrag.setText("10.00");
+        pnlSteuerung.add(tfBetrag);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,126 +90,86 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(bt_abrechnen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                    .addComponent(pnlSteuerung, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bt_ueberweisen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_betrag))
-                        .addGap(38, 38, 38)
-                        .addComponent(bt_einzahlen)
-                        .addGap(39, 39, 39)
-                        .addComponent(bt_auszahlen))
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btAbrechnen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlSteuerung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_ueberweisen)
-                    .addComponent(bt_einzahlen)
-                    .addComponent(bt_auszahlen))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txf_betrag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bt_abrechnen)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addComponent(btAbrechnen)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        getAccessibleContext().setAccessibleName("Kontoverwaltung");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_ueberweisenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_ueberweisenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bt_ueberweisenActionPerformed
+    private void lstPersonenValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPersonenValueChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+        Person p = (Person) lstPersonen.getSelectedValue();
+        
+        lstGirokonten.setListData(p.getKonten());
+
+
+    }//GEN-LAST:event_lstPersonenValueChanged
+
+    private void erzeugeDaten() {
+        personen = new Person[5];
+        personen[0] = new Person(1, "Meier", "Franz");
+        personen[0].addKonto(new Girokonto(11, 500.0, 0.99));
+        personen[0].addKonto(new Sparkonto(12, 2.0));
+        personen[0].addKonto(new Festgeldkonto(13, 6, 1000));
+        personen[1] = new Person(2, "Müller", "Hans");
+        personen[1].addKonto(new Girokonto(22, 1500.0, 0.99));
+        personen[2] = new Person(3, "Schmitz", "Klaus");
+        personen[2].addKonto(new Girokonto(33, 2500.0, 0.99));
+        personen[3] = new Person(4, "Holz", "Manfred");
+        personen[3].addKonto(new Girokonto(44, 3500.0, 0.25));
+        personen[4] = new Person(5, "Klemm", "Sigfried");
+        personen[4].addKonto(new Girokonto(55, 4500.0, 0.25));
+        lstPersonen.setListData(personen);
+
+        for (Person person : personen) {
+            System.out.println(person.toString());
+            for (Konto konto : person.getKonten()) {
+                System.out.println("   - " + konto.toString());
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        Person person = new Person(4711, "Meier", "Franz");
-        Festgeldkonto festgeldkonto = new Festgeldkonto(4711, 6, 5000);
-        person.addKonto(festgeldkonto);
-        Sparkonto sparkonto = new Sparkonto(1.5, 4711);
-        sparkonto.addGuthaben(100);
-        person.addKonto(sparkonto);
-
-        for (int i = 0; i < person.getKonten().size(); i++) {// über alle Konten iterieren
-            Konto konto = person.getKonten().get(i);
-            System.out.println(person.getName() + " "
-                    + konto.getTyp() + " (Kontostand): "
-                    + konto.getGuthaben());
-            festgeldkonto.abrechnen();
-            System.out.println(person.getName() + " "
-                    + konto.getTyp() + " (Kontostand): "
-                    + konto.getGuthaben());
-        }
-        
-        
-        
-        
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt_abrechnen;
-    private javax.swing.JButton bt_auszahlen;
-    private javax.swing.JButton bt_einzahlen;
-    private javax.swing.JButton bt_ueberweisen;
+    private javax.swing.JButton btAbrechnen;
+    private javax.swing.JButton btAuszahlen;
+    private javax.swing.JButton btEinzahlen;
+    private javax.swing.JButton btÜberweisen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> list_konten;
-    private javax.swing.JList<String> list_persons;
-    private javax.swing.JTextField txf_betrag;
+    private javax.swing.JList lstGirokonten;
+    private javax.swing.JList lstPersonen;
+    private javax.swing.JPanel pnlSteuerung;
+    private javax.swing.JTextField tfBetrag;
     // End of variables declaration//GEN-END:variables
 }
