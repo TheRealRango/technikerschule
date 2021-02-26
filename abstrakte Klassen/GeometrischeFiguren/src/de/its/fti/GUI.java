@@ -1,30 +1,45 @@
 package de.its.fti;
 
+import java.awt.Color;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
+
 public class GUI extends javax.swing.JFrame {
+
+    private ListeGeometrischeFiguren listegeometrischerFiguren = new ListeGeometrischeFiguren();
 
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        this.erzeugeDaten();
+        this.ausgabeDaten();
     }
+
     
-      
-    public static void main(String[] args) {
-        // TODO code application logic here
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
-        });
+
+    
+
+    private void erzeugeDaten() {
+        Rechteck rechteck1 = new Rechteck();
+        rechteck1.setHoehe(10);
+        rechteck1.setBreite(5);
+        rechteck1.setFarbe(Color.white);
+        listegeometrischerFiguren.add(rechteck1);
 
     }
-    private void erzeugeDaten(){
-        Rechteck rechteck1 = new Rechteck();
+    
+    private void ausgabeDaten() {
+        DefaultListModel listModel = new DefaultListModel();
+        for (int i=0; i < listegeometrischerFiguren.getGeometrischeFigur().length; i++){
+            listModel.addElement(listegeometrischerFiguren.getGeometrischeFigur()[i]);
+        }
+        lstOverview.setModel(listModel);
         
-        
+            
     }
-     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,7 +98,7 @@ public class GUI extends javax.swing.JFrame {
             pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOverviewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpnOverview, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addComponent(scrpnOverview)
                 .addContainerGap())
         );
 

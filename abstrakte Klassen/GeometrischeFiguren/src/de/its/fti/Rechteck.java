@@ -13,6 +13,7 @@ public class Rechteck extends GeometrischeFigur {
 
     private double breite;
     private double hoehe;
+     
 
     public double getBreite() {
         return breite;

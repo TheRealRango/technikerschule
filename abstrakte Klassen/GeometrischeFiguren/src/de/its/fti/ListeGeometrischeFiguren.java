@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author lorenz
  */
-public class ListGeometrischeFiguren {
+public class ListeGeometrischeFiguren {
 
     private ArrayList<GeometrischeFigur> geometrischeFiguren = new ArrayList<>();
 
