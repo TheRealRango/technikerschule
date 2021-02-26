@@ -36,5 +36,8 @@ public class Dreieck extends GeometrischeFigur {
 
         return flaecheninhalt;
     }
+    public String toString(){
+        return "Grundlinie" + String.valueOf(grundlinie) + "Hoehe" + String.valueOf(hoehe);
+    }
 
 }

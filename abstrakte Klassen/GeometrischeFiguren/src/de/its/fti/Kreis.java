@@ -26,6 +26,10 @@ public class Kreis extends GeometrischeFigur{
        return flaecheninhalt;
     }
     
+    public String toString() {
+        return "Kreis - Flächeninhalt: " + berechneFlaecheninhalt();
+    }
+    
     
     
 }

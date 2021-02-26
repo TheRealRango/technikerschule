@@ -36,5 +36,10 @@ public class Rechteck extends GeometrischeFigur {
         double flaecheninhalt = hoehe * breite;
         return flaecheninhalt;
     }
+    
+    @Override
+    public String toString() {
+        return "Rechteck -  Breite: " + String.valueOf(breite) + "Hoehe: " + String.valueOf(hoehe);
+    }
 
 }

@@ -2,6 +2,8 @@ package de.its.fti;
 
 import java.awt.Color;
 import javax.swing.DefaultListModel;
+import javax.swing.JColorChooser;
+import javax.swing.JTabbedPane;
 import javax.swing.ListModel;
 
 public class GUI extends javax.swing.JFrame {
@@ -13,13 +15,9 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        this.erzeugeDaten();
-        this.ausgabeDaten();
+        erzeugeDaten();
+        lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur());
     }
-
-    
-
-    
 
     private void erzeugeDaten() {
         Rechteck rechteck1 = new Rechteck();
@@ -28,16 +26,17 @@ public class GUI extends javax.swing.JFrame {
         rechteck1.setFarbe(Color.white);
         listegeometrischerFiguren.add(rechteck1);
 
-    }
-    
-    private void ausgabeDaten() {
-        DefaultListModel listModel = new DefaultListModel();
-        for (int i=0; i < listegeometrischerFiguren.getGeometrischeFigur().length; i++){
-            listModel.addElement(listegeometrischerFiguren.getGeometrischeFigur()[i]);
-        }
-        lstOverview.setModel(listModel);
-        
-            
+        Kreis kreis1 = new Kreis();
+        kreis1.setRadius(5);
+        kreis1.setFarbe(Color.blue);
+        listegeometrischerFiguren.add(kreis1);
+
+        Dreieck dreieck1 = new Dreieck();
+        dreieck1.setGrundlinie(15);
+        dreieck1.setHoehe(10);
+        dreieck1.setFarbe(Color.red);
+        listegeometrischerFiguren.add(dreieck1);
+
     }
 
     /**
@@ -83,6 +82,11 @@ public class GUI extends javax.swing.JFrame {
         pnlOverview.setBorder(javax.swing.BorderFactory.createTitledBorder("Übersicht"));
 
         lstOverview.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstOverview.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstOverviewValueChanged(evt);
+            }
+        });
         scrpnOverview.setViewportView(lstOverview);
 
         javax.swing.GroupLayout pnlOverviewLayout = new javax.swing.GroupLayout(pnlOverview);
@@ -200,13 +204,28 @@ public class GUI extends javax.swing.JFrame {
         tbpnDetail.addTab("Kreis", pnlCircle);
 
         btnSelectColor.setText("Farbe");
+        btnSelectColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectColorActionPerformed(evt);
+            }
+        });
 
         pnlControl.setLayout(new java.awt.GridLayout(1, 2, 10, 0));
 
         btnAdd.setText("hinzufügen");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
         pnlControl.add(btnAdd);
 
         btnUpdate.setText("ändern");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
         pnlControl.add(btnUpdate);
 
         javax.swing.GroupLayout pnlDetailLayout = new javax.swing.GroupLayout(pnlDetail);
@@ -262,6 +281,94 @@ public class GUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lstOverviewValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstOverviewValueChanged
+        // TODO add your handling code here:
+        GeometrischeFigur figur = (GeometrischeFigur) lstOverview.getSelectedValue();
+        if (figur != null) {
+            btnSelectColor.setBackground(figur.getFarbe());
+            if (figur instanceof Rechteck) {
+                tbpnDetail.setSelectedIndex(0);
+                Rechteck rechteck = (Rechteck) figur;
+                tfRectangleLength.setText("" + rechteck.getHoehe());
+                tfRectangleWidth.setText("" + rechteck.getBreite());
+            } else if (figur instanceof Kreis) {
+                tbpnDetail.setSelectedIndex(2);
+                Kreis kreis = (Kreis) (figur);
+                tfCircleRadius.setText("" + kreis.getRadius());
+
+            } else if (figur instanceof Dreieck) {
+                tbpnDetail.setSelectedIndex(1);
+                Dreieck dreieck = (Dreieck) figur;
+                tfTriangleBaseline.setText("" + dreieck.getGrundlinie());
+                tfTriangleHeight.setText("" + dreieck.getHoehe());
+            }
+        }
+    }//GEN-LAST:event_lstOverviewValueChanged
+
+    private void btnSelectColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectColorActionPerformed
+        // TODO add your handling code here:
+        Color ausgewaehltefarbe = JColorChooser.showDialog(this, "Farbauswahl", btnSelectColor.getBackground());
+        btnSelectColor.setBackground(ausgewaehltefarbe);
+    }//GEN-LAST:event_btnSelectColorActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        GeometrischeFigur figur = (GeometrischeFigur) lstOverview.getSelectedValue();
+        if (figur != null) {
+            figur.setFarbe(btnSelectColor.getBackground());
+            if (figur instanceof Rechteck) {
+                Rechteck rechteck = (Rechteck) figur;
+                rechteck.setBreite(Double.valueOf(tfRectangleWidth.getText()));
+                rechteck.setHoehe(Double.valueOf(tfRectangleLength.getText()));
+            } else if (figur instanceof Kreis) {
+
+                Kreis kreis = (Kreis) (figur);
+                kreis.setRadius(Double.valueOf(tfCircleRadius.getText()));
+
+            } else if (figur instanceof Dreieck) {
+
+                Dreieck dreieck = (Dreieck) figur;
+                dreieck.setGrundlinie(Double.valueOf(tfTriangleBaseline.getText()));
+                dreieck.setHoehe(Double.valueOf(tfTriangleHeight.getText()));
+
+            }
+
+            lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //unnötig
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        switch (tbpnDetail.getSelectedIndex()) {
+            case 0:
+                Rechteck rechteck = new Rechteck();
+                rechteck.setBreite(Double.valueOf(tfRectangleWidth.getText()));
+                rechteck.setHoehe(Double.valueOf(tfRectangleLength.getText()));
+                rechteck.setFarbe(btnSelectColor.getBackground());
+                listegeometrischerFiguren.add(rechteck);
+                lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //hier wichtig!
+                break;
+            case 1:
+                Dreieck dreieck = new Dreieck();
+                dreieck.setGrundlinie(Double.valueOf(tfTriangleBaseline.getText()));
+                dreieck.setHoehe(Double.valueOf(tfTriangleHeight.getText()));
+                dreieck.setFarbe(btnSelectColor.getBackground());
+                listegeometrischerFiguren.add(dreieck);
+                lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //hier wichtig!
+                break;
+            case 2:
+
+                Kreis kreis = new Kreis();
+                kreis.setRadius(Double.valueOf(tfCircleRadius.getText()));
+                kreis.setFarbe(btnSelectColor.getBackground());
+                listegeometrischerFiguren.add(kreis);
+                lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //hier wichtig!
+                break;
+
+        }
+
+
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
