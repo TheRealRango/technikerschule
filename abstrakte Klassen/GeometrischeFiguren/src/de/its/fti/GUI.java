@@ -16,7 +16,8 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
         initComponents();
         erzeugeDaten();
-        lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur());
+        updateListandQm();
+
     }
 
     private void erzeugeDaten() {
@@ -39,6 +40,15 @@ public class GUI extends javax.swing.JFrame {
 
     }
 
+    private void updateListandQm() {
+        lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur());
+        lb_sumFlaecheninhalte.setText("Summe aller Flächeninhalte: " + String.valueOf(listegeometrischerFiguren.getFlaecheninhalte()) + "m²");
+    }
+
+    private void updateQm() {
+        lb_sumFlaecheninhalte.setText("Summe aller Flächeninhalte: " + String.valueOf(listegeometrischerFiguren.getFlaecheninhalte()) + "m²");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +63,7 @@ public class GUI extends javax.swing.JFrame {
         pnlOverview = new javax.swing.JPanel();
         scrpnOverview = new javax.swing.JScrollPane();
         lstOverview = new javax.swing.JList();
+        lb_sumFlaecheninhalte = new javax.swing.JLabel();
         pnlDetail = new javax.swing.JPanel();
         tbpnDetail = new javax.swing.JTabbedPane();
         pnlRectangle = new javax.swing.JPanel();
@@ -72,6 +83,7 @@ public class GUI extends javax.swing.JFrame {
         pnlControl = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -89,21 +101,29 @@ public class GUI extends javax.swing.JFrame {
         });
         scrpnOverview.setViewportView(lstOverview);
 
+        lb_sumFlaecheninhalte.setText("lb_sumFlaecheninhalte");
+
         javax.swing.GroupLayout pnlOverviewLayout = new javax.swing.GroupLayout(pnlOverview);
         pnlOverview.setLayout(pnlOverviewLayout);
         pnlOverviewLayout.setHorizontalGroup(
             pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOverviewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpnOverview, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addGroup(pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scrpnOverview, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addGroup(pnlOverviewLayout.createSequentialGroup()
+                        .addComponent(lb_sumFlaecheninhalte)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlOverviewLayout.setVerticalGroup(
             pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOverviewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpnOverview)
-                .addContainerGap())
+                .addComponent(scrpnOverview, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lb_sumFlaecheninhalte)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pnlDetail.setBorder(javax.swing.BorderFactory.createTitledBorder("Details"));
@@ -123,7 +143,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlRectangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfRectangleWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(tfRectangleWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                     .addComponent(tfRectangleLength))
                 .addContainerGap())
         );
@@ -138,7 +158,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(pnlRectangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tfRectangleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         tbpnDetail.addTab("Rechteck", pnlRectangle);
@@ -158,7 +178,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(pnlTriangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfTriangleBaseline, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(tfTriangleBaseline, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                     .addComponent(tfTriangleHeight))
                 .addContainerGap())
         );
@@ -188,7 +208,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(tfCircleRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(tfCircleRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlCircleLayout.setVerticalGroup(
@@ -198,7 +218,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(pnlCircleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tfCircleRadius, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         tbpnDetail.addTab("Kreis", pnlCircle);
@@ -218,7 +238,6 @@ public class GUI extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
-        pnlControl.add(btnAdd);
 
         btnUpdate.setText("ändern");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -226,7 +245,13 @@ public class GUI extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
-        pnlControl.add(btnUpdate);
+
+        btnDelete.setText("löschen");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlDetailLayout = new javax.swing.GroupLayout(pnlDetail);
         pnlDetail.setLayout(pnlDetailLayout);
@@ -242,6 +267,13 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(pnlControl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tbpnDetail))
+                        .addContainerGap())
+                    .addGroup(pnlDetailLayout.createSequentialGroup()
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         pnlDetailLayout.setVerticalGroup(
@@ -251,6 +283,11 @@ public class GUI extends javax.swing.JFrame {
                 .addComponent(btnSelectColor)
                 .addGap(18, 18, 18)
                 .addComponent(tbpnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -333,8 +370,10 @@ public class GUI extends javax.swing.JFrame {
                 dreieck.setHoehe(Double.valueOf(tfTriangleHeight.getText()));
 
             }
+            lstOverview.repaint(); //Listbox wird neu gezeichnet
+            //lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //--> unnötig weil keine neuen Daten hinzugefügt werden, repaint() reicht
+            updateQm();
 
-            lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //unnötig
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -366,13 +405,24 @@ public class GUI extends javax.swing.JFrame {
                 break;
 
         }
+        updateQm();
 
 
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        //GeometrischeFigur figur = (GeometrischeFigur) lstOverview.getSelectedValue();
+        int index = lstOverview.getSelectedIndex();
+        listegeometrischerFiguren.remove(index);
+        updateListandQm();
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSelectColor;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton2;
@@ -382,6 +432,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lb_sumFlaecheninhalte;
     private javax.swing.JList lstOverview;
     private javax.swing.JPanel pnlCircle;
     private javax.swing.JPanel pnlControl;
