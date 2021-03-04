@@ -1,6 +1,7 @@
 package de.its.fti;
 
 import java.awt.Color;
+import java.text.DecimalFormat;
 import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 import javax.swing.JTabbedPane;
@@ -14,11 +15,13 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
+
         initComponents();
         erzeugeDaten();
         updateListandQm();
 
     }
+    DecimalFormat new_format = new DecimalFormat("#.## m²"); //neues Format definieren
 
     private void erzeugeDaten() {
         Rechteck rechteck1 = new Rechteck();
@@ -42,11 +45,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void updateListandQm() {
         lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur());
-        lb_sumFlaecheninhalte.setText("Summe aller Flächeninhalte: " + String.valueOf(listegeometrischerFiguren.getFlaecheninhalte()) + "m²");
+        lb_sumFlaecheninhalte.setText("Summe aller Flächeninhalte: " + String.valueOf(new_format.format(listegeometrischerFiguren.getFlaecheninhalte())));
     }
 
     private void updateQm() {
-        lb_sumFlaecheninhalte.setText("Summe aller Flächeninhalte: " + String.valueOf(listegeometrischerFiguren.getFlaecheninhalte()) + "m²");
+        lb_sumFlaecheninhalte.setText("Summe aller Flächeninhalte: " + String.valueOf(new_format.format(listegeometrischerFiguren.getFlaecheninhalte())));
     }
 
     /**

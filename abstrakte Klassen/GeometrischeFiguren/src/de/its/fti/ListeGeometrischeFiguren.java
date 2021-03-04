@@ -35,11 +35,11 @@ public class ListeGeometrischeFiguren {
         for (int i = 0; i < geometrischeFiguren.size(); i++) {
             ergebnis = ergebnis + geometrischeFiguren.get(i).berechneFlaecheninhalt();
         }
-        //runden
+        /*runden nicht nötig wegen new_format
         ergebnis = ergebnis * 100;
         ergebnis = Math.round(ergebnis); // returns 200.35
         ergebnis = ergebnis / 100;
-
+         */
         return ergebnis;
     }
 
