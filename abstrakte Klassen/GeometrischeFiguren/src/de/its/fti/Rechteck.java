@@ -39,7 +39,7 @@ public class Rechteck extends GeometrischeFigur {
     
     @Override
     public String toString() {
-        return "Rechteck - Breite: " + String.valueOf(breite) + "Hoehe: " + String.valueOf(hoehe) + "Linienart: " + getLinie();
+        return "Rechteck - Breite: " + String.valueOf(breite) + "Hoehe: " + String.valueOf(hoehe) + "Linienart: " + getLinie().toString().toLowerCase();
     }
 
 }

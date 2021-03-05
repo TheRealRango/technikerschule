@@ -27,7 +27,7 @@ public class Kreis extends GeometrischeFigur{
     }
     
     public String toString() {
-        return "Kreis - Flächeninhalt: " + berechneFlaecheninhalt() + "Linienart: " + getLinie();
+        return "Kreis - Flächeninhalt: " + berechneFlaecheninhalt() + "Linienart: " + getLinie().toString().toLowerCase();
     }
     
     

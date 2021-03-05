@@ -6,6 +6,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
 import javax.swing.JTabbedPane;
 import javax.swing.ListModel;
+import javax.swing.UIManager;
 
 public class GUI extends javax.swing.JFrame {
 
