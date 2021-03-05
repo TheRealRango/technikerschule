@@ -28,17 +28,20 @@ public class GUI extends javax.swing.JFrame {
         rechteck1.setHoehe(10);
         rechteck1.setBreite(5);
         rechteck1.setFarbe(Color.white);
+        rechteck1.setLinie(Linienart.VOLL);
         listegeometrischerFiguren.add(rechteck1);
 
         Kreis kreis1 = new Kreis();
         kreis1.setRadius(5);
         kreis1.setFarbe(Color.blue);
+        kreis1.setLinie(Linienart.GEPUNKTET);
         listegeometrischerFiguren.add(kreis1);
 
         Dreieck dreieck1 = new Dreieck();
         dreieck1.setGrundlinie(15);
         dreieck1.setHoehe(10);
         dreieck1.setFarbe(Color.red);
+        dreieck1.setLinie(Linienart.GESTRICHELT);
         listegeometrischerFiguren.add(dreieck1);
 
     }
@@ -87,6 +90,7 @@ public class GUI extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        cb_linienart = new javax.swing.JComboBox<>();
 
         jLabel3.setText("jLabel3");
 
@@ -113,7 +117,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(pnlOverviewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrpnOverview, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                    .addComponent(scrpnOverview, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
                     .addGroup(pnlOverviewLayout.createSequentialGroup()
                         .addComponent(lb_sumFlaecheninhalte)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -146,7 +150,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlRectangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfRectangleWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                    .addComponent(tfRectangleWidth, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                     .addComponent(tfRectangleLength))
                 .addContainerGap())
         );
@@ -181,7 +185,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(pnlTriangleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfTriangleBaseline, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                    .addComponent(tfTriangleBaseline, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addComponent(tfTriangleHeight))
                 .addContainerGap())
         );
@@ -211,7 +215,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(tfCircleRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addComponent(tfCircleRadius, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlCircleLayout.setVerticalGroup(
@@ -256,6 +260,8 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        cb_linienart.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VOLL", "GEPUNKTET", "GESTRICHELT" }));
+
         javax.swing.GroupLayout pnlDetailLayout = new javax.swing.GroupLayout(pnlDetail);
         pnlDetail.setLayout(pnlDetailLayout);
         pnlDetailLayout.setHorizontalGroup(
@@ -263,9 +269,6 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(pnlDetailLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDetailLayout.createSequentialGroup()
-                        .addComponent(btnSelectColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDetailLayout.createSequentialGroup()
                         .addGroup(pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(pnlControl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -277,21 +280,28 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDetailLayout.createSequentialGroup()
+                        .addGroup(pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(cb_linienart, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSelectColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10))))
         );
         pnlDetailLayout.setVerticalGroup(
             pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDetailLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(btnSelectColor)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_linienart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tbpnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(pnlControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -304,9 +314,9 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlOverview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlOverview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -327,6 +337,18 @@ public class GUI extends javax.swing.JFrame {
         GeometrischeFigur figur = (GeometrischeFigur) lstOverview.getSelectedValue();
         if (figur != null) {
             btnSelectColor.setBackground(figur.getFarbe());
+            switch (figur.getLinie().toString()) {
+                case "VOLL":
+                    cb_linienart.setSelectedIndex(0);
+                    break;
+                case "GEPUNKTET":
+                    cb_linienart.setSelectedIndex(1);
+                    break;
+                case "GESTRICHELT":
+                    cb_linienart.setSelectedIndex(2);
+                    break;
+            }
+
             if (figur instanceof Rechteck) {
                 tbpnDetail.setSelectedIndex(0);
                 Rechteck rechteck = (Rechteck) figur;
@@ -355,23 +377,39 @@ public class GUI extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         GeometrischeFigur figur = (GeometrischeFigur) lstOverview.getSelectedValue();
+
+        Linienart tmp = Linienart.VOLL;
+        switch (cb_linienart.getSelectedItem().toString()) {
+            case "VOLL":
+                tmp = Linienart.VOLL;
+                break;
+            case "GEPUNKTET":
+                tmp = Linienart.GEPUNKTET;
+                break;
+            case "GESTRICHELT":
+                tmp = Linienart.GESTRICHELT;
+                break;
+        }
+
         if (figur != null) {
             figur.setFarbe(btnSelectColor.getBackground());
             if (figur instanceof Rechteck) {
                 Rechteck rechteck = (Rechteck) figur;
                 rechteck.setBreite(Double.valueOf(tfRectangleWidth.getText()));
                 rechteck.setHoehe(Double.valueOf(tfRectangleLength.getText()));
+                rechteck.setLinie(tmp);
             } else if (figur instanceof Kreis) {
 
                 Kreis kreis = (Kreis) (figur);
                 kreis.setRadius(Double.valueOf(tfCircleRadius.getText()));
 
+                kreis.setLinie(tmp);
             } else if (figur instanceof Dreieck) {
 
                 Dreieck dreieck = (Dreieck) figur;
                 dreieck.setGrundlinie(Double.valueOf(tfTriangleBaseline.getText()));
                 dreieck.setHoehe(Double.valueOf(tfTriangleHeight.getText()));
-
+                dreieck.setLinie(tmp);
             }
             lstOverview.repaint(); //Listbox wird neu gezeichnet
             //lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //--> unnötig weil keine neuen Daten hinzugefügt werden, repaint() reicht
@@ -381,12 +419,27 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        //rechteck.setLinie(cb_linienart.getSelectedItem());
+        Linienart tmp = Linienart.VOLL;
+        switch (cb_linienart.getSelectedItem().toString()) {
+            case "VOLL":
+                tmp = Linienart.VOLL;
+                break;
+            case "GEPUNKTET":
+                tmp = Linienart.GEPUNKTET;
+                break;
+            case "GESTRICHELT":
+                tmp = Linienart.GESTRICHELT;
+                break;
+        }
+
         switch (tbpnDetail.getSelectedIndex()) {
             case 0:
                 Rechteck rechteck = new Rechteck();
                 rechteck.setBreite(Double.valueOf(tfRectangleWidth.getText()));
                 rechteck.setHoehe(Double.valueOf(tfRectangleLength.getText()));
                 rechteck.setFarbe(btnSelectColor.getBackground());
+                rechteck.setLinie(tmp);
                 listegeometrischerFiguren.add(rechteck);
                 lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //hier wichtig!
                 break;
@@ -395,6 +448,7 @@ public class GUI extends javax.swing.JFrame {
                 dreieck.setGrundlinie(Double.valueOf(tfTriangleBaseline.getText()));
                 dreieck.setHoehe(Double.valueOf(tfTriangleHeight.getText()));
                 dreieck.setFarbe(btnSelectColor.getBackground());
+                dreieck.setLinie(tmp);
                 listegeometrischerFiguren.add(dreieck);
                 lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //hier wichtig!
                 break;
@@ -403,6 +457,7 @@ public class GUI extends javax.swing.JFrame {
                 Kreis kreis = new Kreis();
                 kreis.setRadius(Double.valueOf(tfCircleRadius.getText()));
                 kreis.setFarbe(btnSelectColor.getBackground());
+                kreis.setLinie(tmp);
                 listegeometrischerFiguren.add(kreis);
                 lstOverview.setListData(listegeometrischerFiguren.getGeometrischeFigur()); //hier wichtig!
                 break;
@@ -428,6 +483,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSelectColor;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cb_linienart;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
