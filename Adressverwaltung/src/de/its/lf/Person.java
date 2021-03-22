@@ -20,7 +20,9 @@ public class Person {
     private String city;
     private String phone;
     
-    
+    public Person(String lineIn){
+        //????
+    }
 
     public String getFirstName() {
         return firstName;
