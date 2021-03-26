@@ -6,11 +6,16 @@
 package de.its.lf;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +29,9 @@ public class PersonenListe {
         String zeile;
         int counter = 0;
         ArrayList<String> fileLine = new ArrayList<>();
-        FileInputStream fis = new FileInputStream(fileName);
+        FileInputStream fis;
+
+        fis = new FileInputStream(fileName);
         InputStreamReader isr = new InputStreamReader(fis);
         BufferedReader br = new BufferedReader(isr);
         while ((zeile = br.readLine()) != null) {
@@ -40,8 +47,28 @@ public class PersonenListe {
 
     public Person[] getPersonen() {
         Person[] tmp = new Person[personen.size()];
-
         return personen.toArray(tmp);
+    }
+
+    public void writeFile(String fileName) throws FileNotFoundException, IOException {
+        FileOutputStream fos = new FileOutputStream(fileName);
+        OutputStreamWriter osw = new OutputStreamWriter(fos);
+        BufferedWriter bw = new BufferedWriter(osw);
+
+        for (int i = 0; i < personen.size(); i++) {
+            bw.write("Hallo Welt");
+            bw.write("die zweite");
+        }
+
+        fos.close();
+    }
+
+    public void remove(int i) {
+        this.personen.remove(i);
+    }
+
+    public void add(Person person) {
+        this.personen.add(person);
     }
 
 }

@@ -5,9 +5,11 @@
  */
 package de.its.lf;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,11 +55,13 @@ public class GUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txf_phone = new javax.swing.JTextField();
         bt_einlesen = new javax.swing.JButton();
+        bt_delete = new javax.swing.JButton();
+        bt_add = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Bitte drücken Sie auf \"Daten einlesen\"" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -84,10 +88,24 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel8.setText("Telefon");
 
-        bt_einlesen.setText("Button einlesen");
+        bt_einlesen.setText("Daten einlesen");
         bt_einlesen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_einlesenActionPerformed(evt);
+            }
+        });
+
+        bt_delete.setText("Datensatz löschen");
+        bt_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_deleteActionPerformed(evt);
+            }
+        });
+
+        bt_add.setText("Datensatz hinzufügen");
+        bt_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_addActionPerformed(evt);
             }
         });
 
@@ -133,7 +151,10 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(bt_einlesen))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(bt_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_delete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_einlesen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -173,8 +194,13 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                        .addComponent(bt_einlesen))
+                        .addGap(18, 18, 18)
+                        .addComponent(bt_einlesen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_delete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_add)
+                        .addGap(0, 15, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -183,19 +209,25 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_einlesenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_einlesenActionPerformed
-        // TODO add your handling code here:
-
         try {
+            // TODO add your handling code here:
             Liste.readFile("C:\\#Temp\\Adressen.csv");
+            JOptionPane.showMessageDialog(this, "Der Import der Daten hat erfolgreich funktioniert", "", JOptionPane.INFORMATION_MESSAGE);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Die Datei konnte nicht gefunden werden!\n \nEs wurde ein Falscher Pfad angegeben", "Wie dumm sind Sie?!", JOptionPane.ERROR_MESSAGE);
+
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+
         jList1.setListData(Liste.getPersonen());
     }//GEN-LAST:event_bt_einlesenActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         Person person = (Person) jList1.getSelectedValue();
-        if (person != null){
+        if (person != null) {
             txf_firstName.setText(person.getFirstName());
             txf_lastName.setText(person.getLastName());
             txf_number.setText(String.valueOf(person.getNumber()));
@@ -204,9 +236,36 @@ public class GUI extends javax.swing.JFrame {
             txf_postalcode.setText(String.valueOf(person.getPostalCode()));
             txf_birthdate.setText(person.getBirthDate());
             txf_phone.setText(person.getPhone());
-            
+
         }
     }//GEN-LAST:event_jList1ValueChanged
+
+    private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
+        // TODO add your handling code here:
+        int index = jList1.getSelectedIndex();
+        Liste.remove(index);
+        jList1.setListData(Liste.getPersonen());
+    }//GEN-LAST:event_bt_deleteActionPerformed
+
+    private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
+        // TODO add your handling code here:
+        Person person = new Person();
+        person.setFirstName(txf_firstName.getText());
+        person.setLastName(txf_lastName.getText());
+        person.setNumber(Integer.valueOf(txf_number.getText()));
+        person.setPhone(txf_phone.getText());
+        person.setPostalCode(Integer.valueOf(txf_postalcode.getText()));
+        person.setStreet(txf_street.getText());
+        person.setCity(txf_city.getText());
+        person.setBirthDate(txf_birthdate.getText());
+        Liste.add(person);
+        jList1.setListData(Liste.getPersonen());
+        try {
+            Liste.writeFile("C:\\#Temp\\Adressennew.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bt_addActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +303,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_add;
+    private javax.swing.JButton bt_delete;
     private javax.swing.JButton bt_einlesen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

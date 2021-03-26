@@ -10,7 +10,7 @@ package de.its.lf;
  * @author lorenz
  */
 public class Person {
-    
+
     private String firstName;
     private String lastName;
     private int number;
@@ -19,22 +19,27 @@ public class Person {
     private int postalCode;
     private String city;
     private String phone;
-    
-    public Person(String lineIn){
+
+    public Person(String lineIn) {
         String[] parts = lineIn.split(";");
         firstName = parts[0];
         lastName = parts[1];
         number = Integer.parseInt(parts[2]);
         street = parts[3];
-        birthDate=parts[4];
-        postalCode=Integer.parseInt(parts[5]);
-        city=parts[6];
-        phone=parts[7];
+        birthDate = parts[4];
+        postalCode = Integer.parseInt(parts[5]);
+        city = parts[6];
+        phone = parts[7];
+
+    }
+
+    Person() {
         
     }
-    
-    public String toString(){
-        return String.valueOf(firstName) + String.valueOf(lastName) + getPhone().toString() + String.valueOf(number)+  String.valueOf(street) + String.valueOf(birthDate) + String.valueOf(city) + String.valueOf(postalCode) + String.valueOf(phone);
+
+    @Override
+    public String toString() {
+        return "Vorname: " + String.valueOf(firstName) + ", Nachname: " + String.valueOf(lastName) + ", Geburtsdatum: " + String.valueOf(birthDate);
     }
 
     public String getFirstName() {
@@ -100,7 +105,5 @@ public class Person {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
-    
-    
+
 }
