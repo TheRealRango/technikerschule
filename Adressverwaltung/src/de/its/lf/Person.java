@@ -21,7 +21,20 @@ public class Person {
     private String phone;
     
     public Person(String lineIn){
-        //????
+        String[] parts = lineIn.split(";");
+        firstName = parts[0];
+        lastName = parts[1];
+        number = Integer.parseInt(parts[2]);
+        street = parts[3];
+        birthDate=parts[4];
+        postalCode=Integer.parseInt(parts[5]);
+        city=parts[6];
+        phone=parts[7];
+        
+    }
+    
+    public String toString(){
+        return String.valueOf(firstName) + String.valueOf(lastName) + getPhone().toString() + String.valueOf(number)+  String.valueOf(street) + String.valueOf(birthDate) + String.valueOf(city) + String.valueOf(postalCode) + String.valueOf(phone);
     }
 
     public String getFirstName() {
