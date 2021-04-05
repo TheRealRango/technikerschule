@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -51,15 +52,18 @@ public class PersonenListe {
     }
 
     public void writeFile(String fileName) throws FileNotFoundException, IOException {
-        FileOutputStream fos = new FileOutputStream(fileName);
+        FileOutputStream fos = new FileOutputStream("output.txt");
         OutputStreamWriter osw = new OutputStreamWriter(fos);
-        BufferedWriter bw = new BufferedWriter(osw);
+        BufferedWriter output = new BufferedWriter(osw);
 
-        for (int i = 0; i < personen.size(); i++) {
-            bw.write("Hallo Welt");
-            bw.write("die zweite");
-        }
+        // Writes the string to the file
+        output.write("1.Zeile\r\n");
+        output.write("2.Zeile\r\n");
+        output.write("3.Zeile");
 
+        // Closes the writer
+        output.close();
+        osw.close();
         fos.close();
     }
 
