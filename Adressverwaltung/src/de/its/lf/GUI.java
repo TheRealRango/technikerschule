@@ -249,19 +249,19 @@ public class GUI extends javax.swing.JFrame {
 
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
         // TODO add your handling code here:
-//        Person person = new Person();
-//        person.setFirstName(txf_firstName.getText());
-//        person.setLastName(txf_lastName.getText());
-//        person.setNumber(Integer.valueOf(txf_number.getText()));
-//        person.setPhone(txf_phone.getText());
-//        person.setPostalCode(Integer.valueOf(txf_postalcode.getText()));
-//        person.setStreet(txf_street.getText());
-//        person.setCity(txf_city.getText());
-//        person.setBirthDate(txf_birthdate.getText());
-//        Liste.add(person);
-//        jList1.setListData(Liste.getPersonen());
+        Person person = new Person();
+        person.setFirstName(txf_firstName.getText());
+        person.setLastName(txf_lastName.getText());
+        person.setNumber(Integer.valueOf(txf_number.getText()));
+        person.setPhone(txf_phone.getText());
+        person.setPostalCode(Integer.valueOf(txf_postalcode.getText()));
+        person.setStreet(txf_street.getText());
+        person.setCity(txf_city.getText());
+        person.setBirthDate(txf_birthdate.getText());
+        Liste.add(person);
+        jList1.setListData(Liste.getPersonen());
         try {
-            Liste.writeFile("D:\\Adressennew.csv");
+            Liste.writeFile("C:\\#Temp\\Adressennew.csv");
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
