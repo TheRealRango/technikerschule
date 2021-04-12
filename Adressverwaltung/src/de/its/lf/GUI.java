@@ -211,7 +211,7 @@ public class GUI extends javax.swing.JFrame {
     private void bt_einlesenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_einlesenActionPerformed
         try {
             // TODO add your handling code here:
-            Liste.readFile("C:\\#Temp\\Adressen.csv");
+            Liste.readFile("C:\\GitHub_test\\new\\Adressverwaltung\\Adressen.csv");
             JOptionPane.showMessageDialog(this, "Der Import der Daten hat erfolgreich funktioniert", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -261,7 +261,7 @@ public class GUI extends javax.swing.JFrame {
         Liste.add(person);
         jList1.setListData(Liste.getPersonen());
         try {
-            Liste.writeFile("C:\\#Temp\\Adressennew.csv");
+            Liste.writeFile("C:\\GitHub_test\\new\\Adressverwaltung\\Adressen.csv");
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }

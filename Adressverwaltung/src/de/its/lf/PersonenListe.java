@@ -52,14 +52,14 @@ public class PersonenListe {
     }
 
     public void writeFile(String fileName) throws FileNotFoundException, IOException {
-        FileOutputStream fos = new FileOutputStream("output.txt");
+        FileOutputStream fos = new FileOutputStream(fileName);
         OutputStreamWriter osw = new OutputStreamWriter(fos);
         BufferedWriter output = new BufferedWriter(osw);
 
         // Writes the string to the file
-        output.write("1.Zeile\r\n");
-        output.write("2.Zeile\r\n");
-        output.write("3.Zeile");
+        for (int i = 0; i < personen.size(); i++) {
+            output.write(getPersonen()[i].toFile() + "\n");
+        }
 
         // Closes the writer
         output.close();
