@@ -245,6 +245,12 @@ public class GUI extends javax.swing.JFrame {
         int index = jList1.getSelectedIndex();
         Liste.remove(index);
         jList1.setListData(Liste.getPersonen());
+        
+        try {
+            Liste.writeFile("C:\\GitHub_test\\new\\Adressverwaltung\\Adressen.csv");
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bt_deleteActionPerformed
 
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
