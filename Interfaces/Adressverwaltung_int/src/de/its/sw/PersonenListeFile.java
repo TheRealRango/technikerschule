@@ -81,8 +81,10 @@ public class PersonenListeFile implements PersonenListe {
     }
 
     @Override
-    public void update(Person person) {
-
+    public void update(Person person) throws FileNotFoundException, IOException{
+        writeFile();
+//        this.delete(person);
+//        this.insert(person);
     }
 
     @Override

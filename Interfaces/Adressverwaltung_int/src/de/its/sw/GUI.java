@@ -62,7 +62,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txf_phone = new javax.swing.JTextField();
-        bt_einlesen = new javax.swing.JButton();
+        bt_aendern = new javax.swing.JButton();
         bt_delete = new javax.swing.JButton();
         bt_add = new javax.swing.JButton();
 
@@ -96,10 +96,10 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel8.setText("Telefon");
 
-        bt_einlesen.setText("Daten einlesen");
-        bt_einlesen.addActionListener(new java.awt.event.ActionListener() {
+        bt_aendern.setText("Datensatz ändern");
+        bt_aendern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_einlesenActionPerformed(evt);
+                bt_aendernActionPerformed(evt);
             }
         });
 
@@ -162,7 +162,7 @@ public class GUI extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(bt_add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bt_delete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_einlesen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(bt_aendern, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -203,7 +203,7 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(txf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
-                        .addComponent(bt_einlesen)
+                        .addComponent(bt_aendern)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bt_delete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -216,23 +216,30 @@ public class GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_einlesenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_einlesenActionPerformed
-//----------------------------not needed anymore - did it on start
-//        try {
-//            // TODO add your handling code here:
-//            Liste.readFile("Adressen.csv");
-//            JOptionPane.showMessageDialog(this, "Der Import der Daten hat erfolgreich funktioniert", "", JOptionPane.INFORMATION_MESSAGE);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(this, "Die Datei konnte nicht gefunden werden!\n \nEs wurde ein Falscher Pfad angegeben", "Wie dumm sind Sie?!", JOptionPane.ERROR_MESSAGE);
-//
-//        } catch (IOException ex) {
-//            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-//
-//        }
-//
-//        jList1.setListData(Liste.getPersonen());
-    }//GEN-LAST:event_bt_einlesenActionPerformed
+    private void bt_aendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aendernActionPerformed
+
+        Person person = (Person) jList1.getSelectedValue();
+        if (person != null) {
+            System.out.println(txf_firstName.getText());
+            person.setFirstName(txf_firstName.getText());
+            person.setLastName(txf_lastName.getText());
+            person.setNumber(Integer.valueOf(txf_number.getText()));
+            person.setBirthDate(txf_birthdate.getText());
+            person.setCity(txf_city.getText());
+            person.setStreet(txf_street.getText());
+            person.setPhone(txf_phone.getText());
+            person.setPostalCode(Integer.valueOf(txf_postalcode.getText()));
+
+            try {
+                liste.update(person);
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jList1.setListData(liste.get());
+        }
+
+
+    }//GEN-LAST:event_bt_aendernActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         Person person = (Person) jList1.getSelectedValue();
@@ -318,8 +325,8 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_add;
+    private javax.swing.JButton bt_aendern;
     private javax.swing.JButton bt_delete;
-    private javax.swing.JButton bt_einlesen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
