@@ -82,7 +82,7 @@ public class PersonenListeFile implements PersonenListe {
     }
 
     @Override
-    public void update(Person person) throws FileNotFoundException, IOException{
+    public void update(Person person) throws FileNotFoundException, IOException {
         writeFile();
 //        this.delete(person);
 //        this.insert(person);
@@ -99,7 +99,7 @@ public class PersonenListeFile implements PersonenListe {
     @Override
     public void sort() {
         Collections.sort(personen);
-        
+
     }
 
 }
