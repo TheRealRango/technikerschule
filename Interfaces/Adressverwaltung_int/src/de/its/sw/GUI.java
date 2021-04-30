@@ -23,7 +23,7 @@ public class GUI extends javax.swing.JFrame {
     private void initData() {
         try {
 
-            liste = new PersonenListeFile(new File("C:\\GitHub_test\\new\\Interfaces\\Adressverwaltung_int\\Adressen.csv"));
+            liste = new PersonenListeFile(new File("C:\\Users\\loren\\OneDrive - it.schule stuttgart\\GitHub\\GitHub_Softwareentwicklung\\Interfaces\\Adressverwaltung_int\\Adressen.csv"));
             JOptionPane.showMessageDialog(this, "Der Import der Daten hat erfolgreich funktioniert", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
