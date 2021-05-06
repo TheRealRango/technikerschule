@@ -1,6 +1,7 @@
 package de.its.sw;
 
-public class Person implements Comparable<Person> {
+//public class Person implements Comparable<Person> {
+public class Person {
 
     protected String firstName;
     protected String lastName;
@@ -80,21 +81,20 @@ public class Person implements Comparable<Person> {
         return "Vorname: " + String.valueOf(firstName) + ", Nachname: " + String.valueOf(lastName) + ", Geburtsdatum: " + String.valueOf(birthDate);
     }
 
-    @Override
-    public int compareTo(Person o) {
-        if (this.lastName.compareTo(o.lastName) < 0) {
-            return -1;
-        } else if (this.lastName.compareTo(o.lastName) == 0) {
-            if (this.firstName.compareTo(o.firstName) < 0) {
-                return -1;
-            } else if (this.firstName.compareTo(o.firstName) == 0) {
-                return 0;
-            } else {
-                return 1;
-            }
-        } else {
-            return 1;
-        }
-    }
-
+//    @Override
+//    public int compareTo(Person o) {
+//        if (this.lastName.compareTo(o.lastName) < 0) {
+//            return -1;
+//        } else if (this.lastName.compareTo(o.lastName) == 0) {
+//            if (this.firstName.compareTo(o.firstName) < 0) {
+//                return -1;
+//            } else if (this.firstName.compareTo(o.firstName) == 0) {
+//                return 0;
+//            } else {
+//                return 1;
+//            }
+//        } else {
+//            return 1;
+//        }
+//    }
 }

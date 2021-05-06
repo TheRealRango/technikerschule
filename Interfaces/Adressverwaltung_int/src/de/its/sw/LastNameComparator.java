@@ -13,7 +13,16 @@ import java.util.Comparator;
  */
 public class LastNameComparator implements Comparator<Person>{
 
+    public static final LastNameComparator ASC = new LastNameComparator(true);
+    public static final LastNameComparator DESC = new LastNameComparator(false);
+    private final boolean ascending;
+    private LastNameComparator(boolean ascending) {
+        this.ascending=ascending;
+    }
 
+    LastNameComparator() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public int compare(Person o1, Person o2) {
@@ -24,6 +33,7 @@ public class LastNameComparator implements Comparator<Person>{
         }else {
             return 1;
         }
+        
         
     }
     
