@@ -65,7 +65,8 @@ public class GUI extends javax.swing.JFrame {
         bt_aendern = new javax.swing.JButton();
         bt_delete = new javax.swing.JButton();
         bt_add = new javax.swing.JButton();
-        bt_sort = new javax.swing.JButton();
+        bt_sortLastName = new javax.swing.JButton();
+        bt_sortFirstName = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,10 +119,17 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        bt_sort.setText("sortieren");
-        bt_sort.addActionListener(new java.awt.event.ActionListener() {
+        bt_sortLastName.setText("sort Nachname");
+        bt_sortLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_sortActionPerformed(evt);
+                bt_sortLastNameActionPerformed(evt);
+            }
+        });
+
+        bt_sortFirstName.setText("sort Vorname");
+        bt_sortFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sortFirstNameActionPerformed(evt);
             }
         });
 
@@ -131,7 +139,7 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -173,8 +181,10 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(bt_delete, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bt_aendern, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_sort)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bt_sortFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bt_sortLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,16 +223,17 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bt_aendern)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bt_delete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bt_add))
-                            .addComponent(bt_sort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 15, Short.MAX_VALUE))
+                        .addGap(59, 59, 59)
+                        .addComponent(bt_aendern)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bt_delete)
+                            .addComponent(bt_sortLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bt_add)
+                            .addComponent(bt_sortFirstName))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -302,11 +313,19 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_addActionPerformed
 
-    private void bt_sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortActionPerformed
+    private void bt_sortLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortLastNameActionPerformed
         // TODO add your handling code here:
-        liste.sort();
+        liste.sortLastname();
+        
         jList1.setListData(liste.get());
-    }//GEN-LAST:event_bt_sortActionPerformed
+    }//GEN-LAST:event_bt_sortLastNameActionPerformed
+
+    private void bt_sortFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortFirstNameActionPerformed
+        // TODO add your handling code here:
+        liste.sortFirstname();
+        
+        jList1.setListData(liste.get());
+    }//GEN-LAST:event_bt_sortFirstNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,7 +366,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_add;
     private javax.swing.JButton bt_aendern;
     private javax.swing.JButton bt_delete;
-    private javax.swing.JButton bt_sort;
+    private javax.swing.JButton bt_sortFirstName;
+    private javax.swing.JButton bt_sortLastName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

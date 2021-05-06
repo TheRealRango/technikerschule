@@ -97,9 +97,14 @@ public class PersonenListeFile implements PersonenListe {
     }
 
     @Override
-    public void sort() {
-        Collections.sort(personen);
+    public void sortLastname() {
+        Collections.sort(personen, new LastNameComparator());
 
+    }
+
+    @Override
+    public void sortFirstname() {
+        Collections.sort(personen, new FirstNameComparator());
     }
 
 }

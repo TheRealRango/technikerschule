@@ -11,7 +11,8 @@ public interface PersonenListe {
 
     public void update(Person person) throws FileNotFoundException, IOException;
 
-    public void sort();
+    public void sortLastname();
+    public void sortFirstname();
 
     public Person[] get();
 }
