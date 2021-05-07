@@ -11,30 +11,34 @@ import java.util.Comparator;
  *
  * @author lorenz
  */
-public class LastNameComparator implements Comparator<Person>{
+public class LastNameComparator implements Comparator<Person> {
 
     public static final LastNameComparator ASC = new LastNameComparator(true);
     public static final LastNameComparator DESC = new LastNameComparator(false);
     private final boolean ascending;
+
     private LastNameComparator(boolean ascending) {
-        this.ascending=ascending;
+        this.ascending = ascending;
     }
 
-    LastNameComparator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     @Override
     public int compare(Person o1, Person o2) {
-        if (o1.lastName.compareTo(o2.lastName)<0){
-            return -1;
-        }else if (o1.lastName.compareTo(o2.lastName)==0){
-            return 0;
-        }else {
-            return 1;
+        int result;
+        if (o1.lastName.compareTo(o2.lastName) < 0) {
+            result = -1;
+        } else if (o1.lastName.compareTo(o2.lastName) == 0) {
+            result = o1.firstName.compareTo(o2.firstName);
+        } else {
+            result = 1;
         }
-        
-        
+        if (ascending) {
+            return result;
+        } else {
+            return result * -1;
+        }
+
     }
-    
+
 }
