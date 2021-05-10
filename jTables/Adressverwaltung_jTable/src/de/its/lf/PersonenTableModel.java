@@ -30,8 +30,7 @@ public class PersonenTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
 
-        int columnCount = 2;
-        return columnCount;
+        return 2;
 
     }
 
