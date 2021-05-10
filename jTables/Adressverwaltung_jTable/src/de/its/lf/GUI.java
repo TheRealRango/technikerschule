@@ -3,9 +3,11 @@ package de.its.lf;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+//import de.its.lf.PersonenTableModel;
 
 public class GUI extends javax.swing.JFrame {
 
@@ -32,7 +34,11 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        jList1.setListData(liste.get());
+
+        tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+       
+        //jList1.setListData(liste.get());
+
     }
 
     /**
@@ -44,8 +50,6 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
         txf_firstName = new javax.swing.JTextField();
         txf_lastName = new javax.swing.JTextField();
         txf_number = new javax.swing.JTextField();
@@ -69,20 +73,10 @@ public class GUI extends javax.swing.JFrame {
         bt_sortFirstName = new javax.swing.JButton();
         box_lastNameSort = new javax.swing.JComboBox<>();
         box_firstNamesort = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblPersonen = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Bitte drücken Sie auf \"Daten einlesen\"" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jList1);
 
         jLabel1.setText("Vorname");
 
@@ -139,14 +133,29 @@ public class GUI extends javax.swing.JFrame {
 
         box_firstNamesort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aufsteigend", "absteigend" }));
 
+        tblPersonen.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "Vorname", "Nachname"
+            }
+        ));
+        tblPersonen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPersonenMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblPersonen);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -200,9 +209,6 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txf_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
@@ -247,8 +253,11 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bt_sortFirstName)
-                            .addComponent(box_firstNamesort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 64, Short.MAX_VALUE))))
+                            .addComponent(box_firstNamesort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 8, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,7 +265,10 @@ public class GUI extends javax.swing.JFrame {
 
     private void bt_aendernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_aendernActionPerformed
 
-        Person person = (Person) jList1.getSelectedValue();
+        int index = tblPersonen.getSelectedRow();
+
+        Person person = liste.getListe().get(index);
+        
         if (person != null) {
             System.out.println(txf_firstName.getText());
             person.setFirstName(txf_firstName.getText());
@@ -273,34 +285,21 @@ public class GUI extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            jList1.setListData(liste.get());
+            //jList1.setListData(liste.get());
+            tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
         }
 
 
     }//GEN-LAST:event_bt_aendernActionPerformed
 
-    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        Person person = (Person) jList1.getSelectedValue();
-        if (person != null) {
-            txf_firstName.setText(person.getFirstName());
-            txf_lastName.setText(person.getLastName());
-            txf_number.setText(String.valueOf(person.getNumber()));
-            txf_street.setText(person.getStreet());
-            txf_city.setText(person.getCity());
-            txf_postalcode.setText(String.valueOf(person.getPostalCode()));
-            txf_birthdate.setText(person.getBirthDate());
-            txf_phone.setText(person.getPhone());
-
-        }
-    }//GEN-LAST:event_jList1ValueChanged
-
     private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            Person person = (Person) jList1.getSelectedValue();
+            Person person = (Person) tblPersonen.getValueAt(1, 1);
             liste.delete(person);
-            jList1.setListData(liste.get());
+            //jList1.setListData(liste.get());
+            tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Fehler beim Löschen");
         }
@@ -319,7 +318,8 @@ public class GUI extends javax.swing.JFrame {
             person.setCity(txf_city.getText());
             person.setBirthDate(txf_birthdate.getText());
             liste.insert(person);
-            jList1.setListData(liste.get());
+            //jList1.setListData(liste.get());
+            tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Falsche Eingabe");
@@ -333,7 +333,8 @@ public class GUI extends javax.swing.JFrame {
         } else {
             liste.sortLastname(SortDirection.DESCEND);
         }
-        jList1.setListData(liste.get());
+        //jList1.setListData(liste.get());
+        tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
     }//GEN-LAST:event_bt_sortLastNameActionPerformed
 
     private void bt_sortFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortFirstNameActionPerformed
@@ -343,8 +344,27 @@ public class GUI extends javax.swing.JFrame {
         } else {
             liste.sortFirstname(SortDirection.DESCEND);
         }
-        jList1.setListData(liste.get());
+        //jList1.setListData(liste.get());
+        tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
     }//GEN-LAST:event_bt_sortFirstNameActionPerformed
+
+    private void tblPersonenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonenMouseClicked
+        // TODO add your handling code here:
+        int index = tblPersonen.getSelectedRow();
+        //Person person = (Person) tblPersonen.getSelectedRow();
+        Person person = liste.getListe().get(index);
+        if (person != null) {
+            txf_firstName.setText(person.getFirstName());
+            txf_lastName.setText(person.getLastName());
+            txf_number.setText(String.valueOf(person.getNumber()));
+            txf_street.setText(person.getStreet());
+            txf_city.setText(person.getCity());
+            txf_postalcode.setText(String.valueOf(person.getPostalCode()));
+            txf_birthdate.setText(person.getBirthDate());
+            txf_phone.setText(person.getPhone());
+
+        }
+    }//GEN-LAST:event_tblPersonenMouseClicked
 
     /**
      * @param args the command line arguments
@@ -397,8 +417,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tblPersonen;
     private javax.swing.JTextField txf_birthdate;
     private javax.swing.JTextField txf_city;
     private javax.swing.JTextField txf_firstName;

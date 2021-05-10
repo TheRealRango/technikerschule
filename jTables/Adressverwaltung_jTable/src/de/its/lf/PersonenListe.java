@@ -2,6 +2,7 @@ package de.its.lf;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public interface PersonenListe {
 
@@ -16,4 +17,5 @@ public interface PersonenListe {
     public void sortFirstname(SortDirection sortDirection);
 
     public Person[] get();
+    public ArrayList<Person> getListe();
 }

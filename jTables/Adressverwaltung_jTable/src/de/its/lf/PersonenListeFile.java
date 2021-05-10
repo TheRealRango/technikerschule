@@ -109,4 +109,9 @@ public class PersonenListeFile implements PersonenListe {
         personen.sort(firstNameComparator);
     }
 
+    @Override
+    public ArrayList<Person> getListe() {
+        return personen;
+    }
+
 }
