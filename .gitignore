@@ -56,3 +56,5 @@ hs_err_pid*
 /Interfaces/Adressverwaltung_int/dist/
 /Enum/Adressverwaltung_enum/nbproject/private/
 /Enum/Adressverwaltung_enum/build/
+/jTables/Adressverwaltung_enum/nbproject/private/
+/jTables/Adressverwaltung_jTable/nbproject/private/
