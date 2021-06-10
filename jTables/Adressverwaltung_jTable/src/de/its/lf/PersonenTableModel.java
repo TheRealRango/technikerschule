@@ -50,4 +50,6 @@ public class PersonenTableModel extends AbstractTableModel {
         String [] title = {"Vorname", "Nachname"};
         return title[index];
     }
+    
+    
 }

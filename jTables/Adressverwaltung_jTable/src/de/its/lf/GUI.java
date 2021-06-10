@@ -36,9 +36,8 @@ public class GUI extends javax.swing.JFrame {
         }
 
         tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
-       
-        //jList1.setListData(liste.get());
 
+        //jList1.setListData(liste.get());
     }
 
     /**
@@ -130,6 +129,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         box_lastNameSort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aufsteigend", "absteigend" }));
+        box_lastNameSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                box_lastNameSortActionPerformed(evt);
+            }
+        });
 
         box_firstNamesort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aufsteigend", "absteigend" }));
 
@@ -268,9 +272,9 @@ public class GUI extends javax.swing.JFrame {
         int index = tblPersonen.getSelectedRow();
 
         Person person = liste.getListe().get(index);
-        
+
         if (person != null) {
-            System.out.println(txf_firstName.getText());
+            //  System.out.println(txf_firstName.getText());
             person.setFirstName(txf_firstName.getText());
             person.setLastName(txf_lastName.getText());
             person.setNumber(Integer.valueOf(txf_number.getText()));
@@ -286,7 +290,8 @@ public class GUI extends javax.swing.JFrame {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             }
             //jList1.setListData(liste.get());
-            tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+            // tblPersonen.setModel(new PersonenTableModel(liste.getListe())); --> unnötig
+            tblPersonen.repaint(); //reicht!
         }
 
 
@@ -296,10 +301,12 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            Person person = (Person) tblPersonen.getValueAt(1, 1);
+            int index = tblPersonen.getSelectedRow();
+            Person person = liste.getListe().get(index);
             liste.delete(person);
             //jList1.setListData(liste.get());
-            tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+            //tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+            tblPersonen.repaint(); //reicht!
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Fehler beim Löschen");
         }
@@ -319,7 +326,8 @@ public class GUI extends javax.swing.JFrame {
             person.setBirthDate(txf_birthdate.getText());
             liste.insert(person);
             //jList1.setListData(liste.get());
-            tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+            //tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+            tblPersonen.repaint(); //reicht!
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Falsche Eingabe");
@@ -334,7 +342,8 @@ public class GUI extends javax.swing.JFrame {
             liste.sortLastname(SortDirection.DESCEND);
         }
         //jList1.setListData(liste.get());
-        tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+        //tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+        tblPersonen.repaint(); //reicht!
     }//GEN-LAST:event_bt_sortLastNameActionPerformed
 
     private void bt_sortFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortFirstNameActionPerformed
@@ -345,7 +354,8 @@ public class GUI extends javax.swing.JFrame {
             liste.sortFirstname(SortDirection.DESCEND);
         }
         //jList1.setListData(liste.get());
-        tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+        //tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
+        tblPersonen.repaint(); //reicht!
     }//GEN-LAST:event_bt_sortFirstNameActionPerformed
 
     private void tblPersonenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonenMouseClicked
@@ -365,6 +375,10 @@ public class GUI extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_tblPersonenMouseClicked
+
+    private void box_lastNameSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box_lastNameSortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_box_lastNameSortActionPerformed
 
     /**
      * @param args the command line arguments
