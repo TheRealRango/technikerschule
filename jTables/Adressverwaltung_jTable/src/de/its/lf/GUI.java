@@ -314,6 +314,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void bt_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_addActionPerformed
         // TODO add your handling code here:
+        //hier könnte man noch abfragen, ob ALLE felder 0 sind weil dort wird aktuell noch eine Fehlermeldung geworfen
         try {
             Person person = new Person();
             person.setFirstName(txf_firstName.getText());
