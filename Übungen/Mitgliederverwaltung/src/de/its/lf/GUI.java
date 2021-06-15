@@ -47,6 +47,8 @@ public class GUI extends javax.swing.JFrame {
         cb_selectname = new javax.swing.JComboBox<>();
         txf_selectedname = new javax.swing.JTextField();
         bt_changename = new javax.swing.JButton();
+        bt_sortnames = new javax.swing.JButton();
+        bt_sortdesc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +94,20 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        bt_sortnames.setText("sortieren");
+        bt_sortnames.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sortnamesActionPerformed(evt);
+            }
+        });
+
+        bt_sortdesc.setText("absteigend");
+        bt_sortdesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sortdescActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +117,10 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(bt_anzeigen)
+                        .addGap(27, 27, 27)
+                        .addComponent(bt_sortnames)
+                        .addGap(38, 38, 38)
+                        .addComponent(bt_sortdesc)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
@@ -152,7 +172,10 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bt_anzeigen)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_anzeigen)
+                    .addComponent(bt_sortnames)
+                    .addComponent(bt_sortdesc))
                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
@@ -213,8 +236,24 @@ public class GUI extends javax.swing.JFrame {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(names);
 
         cb_selectname.setModel(model);
-        
+
     }//GEN-LAST:event_bt_changenameActionPerformed
+
+    private void bt_sortnamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortnamesActionPerformed
+        // TODO add your handling code here:
+        NameComperator NameComperator = new NameComperator(Sortdirection.ASCEND);
+        mitglieder.sort(NameComperator);
+
+        jList1.setListData(mitglieder.toArray());
+    }//GEN-LAST:event_bt_sortnamesActionPerformed
+
+    private void bt_sortdescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sortdescActionPerformed
+        // TODO add your handling code here:
+        NameComperator NameComperator = new NameComperator(Sortdirection.DESCEND);
+        mitglieder.sort(NameComperator);
+
+        jList1.setListData(mitglieder.toArray());
+    }//GEN-LAST:event_bt_sortdescActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +294,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_anzeigen;
     private javax.swing.JButton bt_changename;
     private javax.swing.JButton bt_erfassen;
+    private javax.swing.JButton bt_sortdesc;
+    private javax.swing.JButton bt_sortnames;
     private javax.swing.JComboBox<String> cb_activepassive;
     private javax.swing.JComboBox<String> cb_selectname;
     private javax.swing.JList jList1;

@@ -28,6 +28,10 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="bt_anzeigen" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="bt_sortnames" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="bt_sortdesc" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -95,7 +99,11 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="bt_anzeigen" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="bt_anzeigen" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bt_sortnames" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bt_sortdesc" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="182" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -199,6 +207,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_changenameActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bt_sortnames">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="sortieren"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_sortnamesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bt_sortdesc">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="absteigend"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_sortdescActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
