@@ -35,6 +35,7 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         cb_activepassive = new javax.swing.JComboBox<>();
         txf_name = new javax.swing.JTextField();
         txf_sportart1 = new javax.swing.JTextField();
@@ -49,6 +50,8 @@ public class GUI extends javax.swing.JFrame {
         bt_changename = new javax.swing.JButton();
         bt_sortnames = new javax.swing.JButton();
         bt_sortdesc = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,13 +143,13 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(txf_sportart2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(117, 117, 117)
-                                        .addComponent(bt_erfassen))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(91, 91, 91)
                                         .addComponent(txf_selectedname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(98, 98, 98)
-                                        .addComponent(bt_changename)))))
+                                        .addComponent(bt_changename))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(117, 117, 117)
+                                        .addComponent(bt_erfassen)))))
                         .addContainerGap(154, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -154,7 +157,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(cb_activepassive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txf_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txf_spendenhoehe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,7 +179,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(bt_anzeigen)
                     .addComponent(bt_sortnames)
                     .addComponent(bt_sortdesc))
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,6 +199,7 @@ public class GUI extends javax.swing.JFrame {
 
         i++;
         jList1.setListData(mitglieder.toArray());
+        
         String[] names = new String[mitglieder.toArray().length];
 
         for (int j = 0; j < mitglieder.toArray().length; j++) {
@@ -298,6 +302,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_sortnames;
     private javax.swing.JComboBox<String> cb_activepassive;
     private javax.swing.JComboBox<String> cb_selectname;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txf_name;

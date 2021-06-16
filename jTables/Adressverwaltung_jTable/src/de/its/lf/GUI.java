@@ -139,10 +139,10 @@ public class GUI extends javax.swing.JFrame {
 
         tblPersonen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null}
+                {null, null, null}
             },
             new String [] {
-                "Vorname", "Nachname"
+                "Vorname", "Nachname", "Straße"
             }
         ));
         tblPersonen.addMouseListener(new java.awt.event.MouseAdapter() {
