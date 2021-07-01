@@ -20,15 +20,15 @@ import javax.swing.JOptionPane;
  */
 public abstract class DBConnector {
 
-    private String ip;
-    private int port;
-    private String user;
-    private String password;
-    private String host;
+    protected String ip;
+    protected int port;
+    protected String user;
+    protected String password;
+    protected String host;
 
-    private Connection con = null;
-    private Statement stat = null;
-    private ResultSet rs = null;
+    protected Connection con = null;
+    protected Statement stat = null;
+    protected ResultSet rs = null;
 
     public DBConnector(String ip, int port, String user, String password, String host) {
         this.ip = ip;
@@ -38,33 +38,23 @@ public abstract class DBConnector {
         this.host = host;
     }
 
-    private void connect() {
+    public abstract void connect();
 
+    public ResultSet query(String sql) throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-
-        }
-
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://10.201.9.202:3306/sakila", "lorenz", "lorenz123");
+            stat = con.createStatement(); //Statement erzeugen
+            stat.executeQuery("SELECT customer_id, first_name, last_name, email, create_date from customer;");
         } catch (SQLException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
         }
 
+        return stat.getResultSet();
     }
 
-    public ResultSet query(String sql) {
-        return null;
-    }
+    public void disconnect() throws SQLException {
+        stat.close();
+        con.close();
 
-    private void disconnect() {
-        try { // Verbindung schließen
-            con.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
     }
 }

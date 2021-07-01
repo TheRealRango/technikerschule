@@ -24,47 +24,24 @@ import javax.swing.JOptionPane;
 public class PersonenListeDB implements PersonenListe {
 
     private ArrayList<Person> personen = new ArrayList<>();
+    private final DBConnector dbCon;
 
-    public PersonenListeDB() {
-      readDB();
+    public PersonenListeDB(DBConnector dbCon) throws SQLException {
+        this.dbCon = dbCon;
+
+        readDB();
+
     }
 
-    private void readDB()  {
-        Connection con = null;
-        Statement stat = null;
-        ResultSet rs = null;
+    private void readDB() throws SQLException {
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-
-        }
-
-        try {
-            con = DriverManager.getConnection("jdbc:mysql://10.201.9.202:3306/sakila", "lorenz", "lorenz123");
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
-
-        try {
-            stat = con.createStatement(); //Statement erzeugen
-            stat.executeQuery("SELECT customer_id, first_name, last_name, email, create_date from customer;");
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
-
-        try {
-            rs = stat.getResultSet();
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
-
-        try {
-            while (rs.next()) { //DAten verarbeiten
+        
+        dbCon.connect();
+        
+        ResultSet rs = dbCon.query("SELECT customer_id, first_name, last_name, email, create_date from customer;");
+        //ResultSet rs = dbCon.stat.getResultSet();
+        
+       while (rs.next()) { //DAten verarbeiten
                 PersonFromDB person = new PersonFromDB();
                 person.setCustomer_ID(rs.getInt("customer_ID"));
                 person.setFirstName(rs.getString("first_name"));
@@ -73,25 +50,10 @@ public class PersonenListeDB implements PersonenListe {
                 person.setCreate_date(rs.getString("create_date"));
                 personen.add(person);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
-        try { // Resultset schließen
+
+        
             rs.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
-        try { // Statement schließen
-            stat.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
-        try { // Verbindung schließen
-            con.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);
-        }
+            dbCon.disconnect();
     }
 
     @Override
@@ -121,15 +83,15 @@ public class PersonenListeDB implements PersonenListe {
 
     @Override
     public Person[] get() {
-        
+
         Person[] array = new Person[personen.size()];
-        
+
         return personen.toArray(array);
     }
 
     @Override
     public ArrayList<Person> getListe() {
-       return personen;
+        return personen;
     }
 
 }

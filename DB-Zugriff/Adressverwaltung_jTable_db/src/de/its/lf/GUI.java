@@ -3,6 +3,7 @@ package de.its.lf;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,18 +19,20 @@ public class GUI extends javax.swing.JFrame {
     private PersonenListe liste;
     private PersonenTableModel personenTableModel;
 
-    public GUI() {
+    public GUI() throws SQLException {
         initComponents();
         initData();
     }
 
-    private void initData() {
-
-        liste = new PersonenListeDB();
+    private void initData() throws SQLException {
+        DBConnector dbConnect = new DBConnectorMySQL("10.201.9.202", 3806, "lorenz", "lorenz123", "sakila");
+        liste = new PersonenListeDB(dbConnect);
         //liste = new PersonenListeFile(new File("C:\\Users\\loren\\OneDrive - it.schule stuttgart\\GitHub\\GitHub_Softwareentwicklung\\Interfaces\\Adressverwaltung_int\\Adressen.csv"));
         JOptionPane.showMessageDialog(this, "Der Import der Daten hat erfolgreich funktioniert", "", JOptionPane.INFORMATION_MESSAGE);
         personenTableModel = new PersonenTableModel(liste.getListe());
         tblPersonen.setModel(personenTableModel);
+        
+        
 
         //jList1.setListData(liste.get());
     }
@@ -403,7 +406,11 @@ public class GUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUI().setVisible(true);
+                try {
+                    new GUI().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
