@@ -35,25 +35,23 @@ public class PersonenListeDB implements PersonenListe {
 
     private void readDB() throws SQLException {
 
-        
         dbCon.connect();
-        
-        ResultSet rs = dbCon.query("SELECT customer_id, first_name, last_name, email, create_date from customer;");
-        //ResultSet rs = dbCon.stat.getResultSet();
-        
-       while (rs.next()) { //DAten verarbeiten
-                PersonFromDB person = new PersonFromDB();
-                person.setCustomer_ID(rs.getInt("customer_ID"));
-                person.setFirstName(rs.getString("first_name"));
-                person.setLastName(rs.getString("last_name"));
-                person.setEmail(rs.getString("email"));
-                person.setCreate_date(rs.getString("create_date"));
-                personen.add(person);
-            }
 
-        
-            rs.close();
-            dbCon.disconnect();
+        ResultSet rs = dbCon.query("SELECT customer_id, first_name, last_name, email, create_date from customer;");
+       
+
+        while (rs.next()) { //DAten verarbeiten
+            Person person = new Person();
+            person.setCustomer_ID(rs.getInt("customer_ID"));
+            person.setFirstName(rs.getString("first_name"));
+            person.setLastName(rs.getString("last_name"));
+            person.setEmail(rs.getString("email"));
+            person.setCreate_date(rs.getString("create_date"));
+            personen.add(person);
+        }
+
+        rs.close();
+        dbCon.disconnect();
     }
 
     @Override

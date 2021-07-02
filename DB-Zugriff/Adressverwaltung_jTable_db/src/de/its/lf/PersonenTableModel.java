@@ -39,17 +39,17 @@ public class PersonenTableModel extends AbstractTableModel {
         switch (columnIndex) {
             case 0:
 
-                return ((PersonFromDB) personen.get(rowIndex)).getCustomer_ID();
+                return ((Person) personen.get(rowIndex)).getCustomer_ID();
             case 1:
-                return ((PersonFromDB) personen.get(rowIndex)).getFirstName();
+                return ((Person) personen.get(rowIndex)).getFirstName();
 
             case 2:
-                return ((PersonFromDB) personen.get(rowIndex)).getLastName();
+                return ((Person) personen.get(rowIndex)).getLastName();
 
             case 3:
-                return ((PersonFromDB) personen.get(rowIndex)).getEmail();
+                return ((Person) personen.get(rowIndex)).getEmail();
             case 4:
-                return ((PersonFromDB) personen.get(rowIndex)).getCreate_date();
+                return ((Person) personen.get(rowIndex)).getCreate_date();
         }
         return "test";
 

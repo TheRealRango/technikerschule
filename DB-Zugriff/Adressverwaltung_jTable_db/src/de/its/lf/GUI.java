@@ -25,14 +25,12 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void initData() throws SQLException {
-        DBConnector dbConnect = new DBConnectorMySQL("10.201.9.202", 3806, "lorenz", "lorenz123", "sakila");
+        DBConnector dbConnect = new DBConnectorMySQL("10.201.9.202", 3306, "lorenz", "lorenz123", "sakila");
         liste = new PersonenListeDB(dbConnect);
         //liste = new PersonenListeFile(new File("C:\\Users\\loren\\OneDrive - it.schule stuttgart\\GitHub\\GitHub_Softwareentwicklung\\Interfaces\\Adressverwaltung_int\\Adressen.csv"));
         JOptionPane.showMessageDialog(this, "Der Import der Daten hat erfolgreich funktioniert", "", JOptionPane.INFORMATION_MESSAGE);
         personenTableModel = new PersonenTableModel(liste.getListe());
         tblPersonen.setModel(personenTableModel);
-        
-        
 
         //jList1.setListData(liste.get());
     }
@@ -48,20 +46,10 @@ public class GUI extends javax.swing.JFrame {
 
         txf_firstName = new javax.swing.JTextField();
         txf_lastName = new javax.swing.JTextField();
-        txf_number = new javax.swing.JTextField();
-        txf_street = new javax.swing.JTextField();
-        txf_birthdate = new javax.swing.JTextField();
-        txf_postalcode = new javax.swing.JTextField();
-        txf_city = new javax.swing.JTextField();
+        txf_eMail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txf_phone = new javax.swing.JTextField();
         bt_aendern = new javax.swing.JButton();
         bt_delete = new javax.swing.JButton();
         bt_add = new javax.swing.JButton();
@@ -78,17 +66,7 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel2.setText("Nachname");
 
-        jLabel3.setText("Hausnummer");
-
-        jLabel4.setText("Straße");
-
-        jLabel5.setText("Geburtsdatum");
-
-        jLabel6.setText("PLZ");
-
-        jLabel7.setText("Stadt");
-
-        jLabel8.setText("Telefon");
+        jLabel7.setText("E-Mail");
 
         bt_aendern.setText("ändern");
         bt_aendern.addActionListener(new java.awt.event.ActionListener() {
@@ -165,32 +143,12 @@ public class GUI extends javax.swing.JFrame {
                             .addComponent(txf_firstName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                             .addComponent(txf_lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_number, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_street, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_birthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_postalcode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_city, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txf_eMail, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(box_lastNameSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,31 +175,11 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txf_lastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txf_number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txf_street, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txf_birthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txf_postalcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txf_city, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txf_eMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txf_phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(25, 25, 25)
+                        .addGap(159, 159, 159)
                         .addComponent(bt_delete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bt_aendern)
@@ -272,12 +210,8 @@ public class GUI extends javax.swing.JFrame {
             //  System.out.println(txf_firstName.getText());
             person.setFirstName(txf_firstName.getText());
             person.setLastName(txf_lastName.getText());
-            person.setNumber(Integer.valueOf(txf_number.getText()));
-            person.setBirthDate(txf_birthdate.getText());
-            person.setCity(txf_city.getText());
-            person.setStreet(txf_street.getText());
-            person.setPhone(txf_phone.getText());
-            person.setPostalCode(Integer.valueOf(txf_postalcode.getText()));
+
+            person.setEmail(txf_eMail.getText());
 
             try {
                 liste.update(person);
@@ -314,12 +248,9 @@ public class GUI extends javax.swing.JFrame {
             Person person = new Person();
             person.setFirstName(txf_firstName.getText());
             person.setLastName(txf_lastName.getText());
-            person.setNumber(Integer.valueOf(txf_number.getText()));
-            person.setPhone(txf_phone.getText());
-            person.setPostalCode(Integer.valueOf(txf_postalcode.getText()));
-            person.setStreet(txf_street.getText());
-            person.setCity(txf_city.getText());
-            person.setBirthDate(txf_birthdate.getText());
+
+            person.setEmail(txf_eMail.getText());
+
             liste.insert(person);
             //jList1.setListData(liste.get());
             //tblPersonen.setModel(new PersonenTableModel(liste.getListe()));
@@ -362,12 +293,7 @@ public class GUI extends javax.swing.JFrame {
         if (person != null) {
             txf_firstName.setText(person.getFirstName());
             txf_lastName.setText(person.getLastName());
-            txf_number.setText(String.valueOf(person.getNumber()));
-            txf_street.setText(person.getStreet());
-            txf_city.setText(person.getCity());
-            txf_postalcode.setText(String.valueOf(person.getPostalCode()));
-            txf_birthdate.setText(person.getBirthDate());
-            txf_phone.setText(person.getPhone());
+            txf_eMail.setText(person.getEmail());
 
         }
     }//GEN-LAST:event_tblPersonenMouseClicked
@@ -425,21 +351,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_sortLastName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblPersonen;
-    private javax.swing.JTextField txf_birthdate;
-    private javax.swing.JTextField txf_city;
+    private javax.swing.JTextField txf_eMail;
     private javax.swing.JTextField txf_firstName;
     private javax.swing.JTextField txf_lastName;
-    private javax.swing.JTextField txf_number;
-    private javax.swing.JTextField txf_phone;
-    private javax.swing.JTextField txf_postalcode;
-    private javax.swing.JTextField txf_street;
     // End of variables declaration//GEN-END:variables
 }

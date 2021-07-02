@@ -24,10 +24,10 @@ public class LastNameComparator implements Comparator<Person> {
     @Override
     public int compare(Person o1, Person o2) {
         int result;
-        if (o1.lastName.compareTo(o2.lastName) < 0) {
+        if (o1.getLastName().compareTo(o2.getLastName()) < 0) {
             result = -1;
-        } else if (o1.lastName.compareTo(o2.lastName) == 0) {
-            result = o1.firstName.compareTo(o2.firstName);
+        } else if (o1.getLastName().compareTo(o2.getLastName()) == 0) {
+            result = o1.getFirstName().compareTo(o2.getFirstName());
         } else {
             result = 1;
         }

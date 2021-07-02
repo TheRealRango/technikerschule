@@ -43,7 +43,8 @@ public abstract class DBConnector {
     public ResultSet query(String sql) throws SQLException {
         try {
             stat = con.createStatement(); //Statement erzeugen
-            stat.executeQuery("SELECT customer_id, first_name, last_name, email, create_date from customer;");
+            //stat.executeQuery("SELECT customer_id, first_name, last_name, email, create_date from customer;");
+            stat.executeQuery(sql);
         } catch (SQLException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);

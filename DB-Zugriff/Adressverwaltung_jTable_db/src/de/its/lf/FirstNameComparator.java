@@ -22,8 +22,9 @@ public class FirstNameComparator implements Comparator<Person> {
     @Override
     public int compare(Person o1, Person o2) {
         int result;
-        if (o1.firstName.compareTo(o2.firstName) < 0) {
+        if (o1.getFirstName().compareTo(o2.getFirstName()) < 0) {
             result = -1;
+            
 
         } else {
             result = 1;

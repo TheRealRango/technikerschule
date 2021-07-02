@@ -33,8 +33,8 @@ public class DBConnectorMySQL extends DBConnector {
         }
 
         try {
-            con = DriverManager.getConnection("jdbc:mysql://10.201.9.202:3306/sakila", "lorenz", "lorenz123");
-            //con = DriverManager.getConnection("jdbc:mysql://" + this.ip + ":" + this.port + "/" + this.host, this.user, this.password);
+            //con = DriverManager.getConnection("jdbc:mysql://10.201.9.202:3306/sakila", "lorenz", "lorenz123");
+            con = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + host, user, password);
         } catch (SQLException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Fehler" + ex.getMessage(), "test", JOptionPane.ERROR_MESSAGE);

@@ -3,22 +3,15 @@ package de.its.lf;
 //public class Person implements Comparable<Person> {
 public class Person {
 
-    protected String firstName;
-    protected String lastName;
-    protected int number;
-    protected String street;
-    protected String birthDate;
-    protected int postalCode;
-    protected String city;
-    protected String phone;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    private String lastName;
+    private String firstName;
+    private int customer_ID;
+    private int store_ID;
+    private String email;
+    private int address_ID;
+    private int active;
+    private String create_date;
+    private String last_update;
 
     public String getLastName() {
         return lastName;
@@ -28,57 +21,76 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public int getNumber() {
-        return number;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getStreet() {
-        return street;
+    public int getCustomer_ID() {
+        return customer_ID;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setCustomer_ID(int customer_ID) {
+        this.customer_ID = customer_ID;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public int getStore_ID() {
+        return store_ID;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setStore_ID(int store_ID) {
+        this.store_ID = store_ID;
     }
 
-    public int getPostalCode() {
-        return postalCode;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCity() {
-        return city;
+    public int getAddress_ID() {
+        return address_ID;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress_ID(int address_ID) {
+        this.address_ID = address_ID;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getActive() {
+        return active;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setActive(int active) {
+        this.active = active;
     }
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
+
+    public String getLast_update() {
+        return last_update;
+    }
+
+    public void setLast_update(String last_update) {
+        this.last_update = last_update;
+    }
+    
+    
+    
 
     @Override
     public String toString() {
-        return "Vorname: " + String.valueOf(firstName) + ", Nachname: " + String.valueOf(lastName) + ", Geburtsdatum: " + String.valueOf(birthDate);
+        return "Vorname: " + String.valueOf(firstName) + ", Nachname: " + String.valueOf(lastName);
     }
 
 //    @Override
