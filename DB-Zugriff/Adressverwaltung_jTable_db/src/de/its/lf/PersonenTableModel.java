@@ -55,6 +55,41 @@ public class PersonenTableModel extends AbstractTableModel {
 
     }
 
+    public void setPersonen(List<Person> personen) {
+        this.personen = personen;
+    }
+
+    public Person getPerson(int selectedRow) {
+        return personen.get(selectedRow);
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        boolean erlaubt = false;
+        if (columnIndex > 0 && columnIndex < 4) {
+            erlaubt = true;
+        }
+        return erlaubt;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        Person person = getPerson(rowIndex);
+        if (person != null) {
+            switch (columnIndex) {
+                case 1:
+                    person.setFirstName((String) aValue);
+                    break;
+                case 2:
+                    person.setLastName((String) aValue);
+                    break;
+                case 3:
+                    person.setEmail((String) aValue);
+                    break;
+            }
+        }
+    }
+
     @Override
     public String getColumnName(int index) {
         String[] title = {"ID", "Vorname", "Nachname", "EMail", "Date"};
