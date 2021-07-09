@@ -193,34 +193,39 @@ public class GUIPerson extends javax.swing.JFrame {
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertActionPerformed
-        
+
         Person person = new Person();
+
         person.setFirstName(txfFirstName.getText());
         person.setLastName(txfLastName.getText());
         person.setEmail(txfMail.getText());
-              
-        if (person != null) {
-            try {
-                personenListe.insert(person);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        try {
+            personenListe.insert(person);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         loadData();
     }//GEN-LAST:event_btInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         Person person = personTableModel.getPerson(tblPersonen.getSelectedRow());
-        person.setFirstName(txfFirstName.getText());
-        person.setLastName(txfLastName.getText());
-        try {
-            personenListe.update(person);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+        if (person != null) {
+            person.setFirstName(txfFirstName.getText());
+            person.setLastName(txfLastName.getText());
+
+            try {
+                personenListe.update(person);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {JOptionPane.showMessageDialog(this, "Es ist keine Person ausgewählt", "Wie dumm kann man sein?", JOptionPane.ERROR_MESSAGE);
+            
         }
         loadData();
     }//GEN-LAST:event_btnUpdateActionPerformed
