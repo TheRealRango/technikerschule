@@ -39,18 +39,31 @@ public class PersonenListeDB implements PersonenListe {
 
     @Override
     public void insert(Person person) throws ClassNotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dBConnector.connect();
+        dBConnector.querydml("INSERT INTO customer VALUES (NULL,"
+                + "'1',"
+                + "'" + person.getFirstName() + "',"
+                + "'" + person.getLastName() + "',"
+                + "'" + person.getEmail() + "',"
+                + "'1','1',NOW(),NOW());");
+        dBConnector.disconnect();
     }
 
     @Override
     public void update(Person person) throws ClassNotFoundException, SQLException {
-         
-        
-        
+        dBConnector.connect();
+        dBConnector.querydml("UPDATE customer SET first_name=" + "'" + person.getFirstName() + "'"
+                + ",last_name=" + "'" + person.getLastName() + "'"
+                + ",email=" + "'" + person.getEmail() + "'"
+                + " WHERE customer_id =" + person.getCustomer_ID());
+
+        dBConnector.disconnect();
     }
 
     @Override
     public void delete(Person person) throws ClassNotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dBConnector.connect();
+        dBConnector.querydml("DELETE FROM customer WHERE customer_id =" + person.getCustomer_ID());
+        dBConnector.disconnect();
     }
 }

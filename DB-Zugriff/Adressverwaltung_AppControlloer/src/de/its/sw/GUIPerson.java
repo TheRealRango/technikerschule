@@ -16,7 +16,6 @@ public class GUIPerson extends javax.swing.JFrame {
         loadData();
     }
 
-   
     private void loadData() {
         try {
             personTableModel = new PersonenTableModel(personenListe.get());
@@ -180,15 +179,40 @@ public class GUIPerson extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-
+        Person person = personTableModel.getPerson(tblPersonen.getSelectedRow());
+        if (person != null) {
+            try {
+                personenListe.delete(person);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        loadData();
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertActionPerformed
-
+        
+        Person person = new Person();
+        person.setFirstName(txfFirstName.getText());
+        person.setLastName(txfLastName.getText());
+        person.setEmail(txfMail.getText());
+              
+        if (person != null) {
+            try {
+                personenListe.insert(person);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        loadData();
     }//GEN-LAST:event_btInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        Person person = new Person ();
+        Person person = personTableModel.getPerson(tblPersonen.getSelectedRow());
         person.setFirstName(txfFirstName.getText());
         person.setLastName(txfLastName.getText());
         try {
@@ -198,6 +222,7 @@ public class GUIPerson extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
         }
+        loadData();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblPersonenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPersonenMouseClicked

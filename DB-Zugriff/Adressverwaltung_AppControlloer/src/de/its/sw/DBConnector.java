@@ -41,4 +41,14 @@ public abstract class DBConnector {
             return null;
         }
     }
+
+    public void querydml(String sql) throws SQLException {
+        if (sql != null) {
+            stat = con.createStatement();
+            stat.executeUpdate(sql);
+            
+        } else {
+            System.out.println("sql Statement is null");
+        }
+    }
 }
