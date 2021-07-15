@@ -188,6 +188,8 @@ public class GUIPerson extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Es ist keine Person ausgewählt", "Wie dumm kann man sein?", JOptionPane.ERROR_MESSAGE);
         }
         loadData();
     }//GEN-LAST:event_btDeleteActionPerformed
@@ -224,8 +226,9 @@ public class GUIPerson extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(GUIPerson.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {JOptionPane.showMessageDialog(this, "Es ist keine Person ausgewählt", "Wie dumm kann man sein?", JOptionPane.ERROR_MESSAGE);
-            
+        } else {
+            JOptionPane.showMessageDialog(this, "Es ist keine Person ausgewählt", "Wie dumm kann man sein?", JOptionPane.ERROR_MESSAGE);
+
         }
         loadData();
     }//GEN-LAST:event_btnUpdateActionPerformed

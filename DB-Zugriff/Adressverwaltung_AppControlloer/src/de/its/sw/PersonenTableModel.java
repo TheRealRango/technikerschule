@@ -75,7 +75,7 @@ public class PersonenTableModel extends AbstractTableModel {
     }
 
     public Person getPerson(int selectedRow) {
-        if (selectedRow < -1) {
+        if (selectedRow > -1) {
             return personen.get(selectedRow);
         } else {
             return null;
