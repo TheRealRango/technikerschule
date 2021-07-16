@@ -6,13 +6,15 @@ import javax.swing.JOptionPane;
 public class AppController {
 
    private LaenderListe laenderListe;
+   private StaedteListe staedteListe;
     private DBConnector dBConnector;
 
     private void initApp() {
         try {
             dBConnector = new DBConnectorMySQL("10.201.9.202", 3306, "lorenz", "lorenz123", "sakila");
             laenderListe = new LaenderListeDB(dBConnector);
-            GUIStadt gUIStadt = new GUIStadt(laenderListe);
+            staedteListe = new StaedteListeDB(dBConnector);
+            GUIStadt gUIStadt = new GUIStadt(laenderListe, staedteListe);
             gUIStadt.setVisible(true);
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Fehler beim Laden der Daten", JOptionPane.ERROR_MESSAGE);

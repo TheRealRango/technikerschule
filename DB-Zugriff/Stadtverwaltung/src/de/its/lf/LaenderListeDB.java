@@ -30,12 +30,37 @@ public class LaenderListeDB implements LaenderListe {
         
         while (rs.next()){
             Land land = new Land();
-            land.setiD(Integer.parseInt(rs.getString("country_id")));
-            land.setBezeichnung(rs.getString("country"));
+            land.setCountry_ID(Integer.parseInt(rs.getString("country_id")));
+            land.setCountry_Bezeichnung(rs.getString("country"));
             laenderListe.add(land);
             
         }
+        
         return laenderListe;
+    }
+    
+    public Land[] getArray() throws ClassNotFoundException, SQLException {
+        List<Land> laenderListe = get();
+         Land[] array = new Land[laenderListe.size()];
+        return laenderListe.toArray(array);
+    }
+    
+    
+    
+
+    @Override
+    public void insert(Land land) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Land land) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Land land) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -11,28 +11,28 @@ package de.its.lf;
  */
 public class Land {
     
-    protected int iD;
-    protected String bezeichnung;
+    protected int country_ID;
+    protected String country_Bezeichnung;
 
-    public int getiD() {
-        return iD;
+    public int getCountry_ID() {
+        return country_ID;
     }
 
-    public void setiD(int iD) {
-        this.iD = iD;
+    public void setCountry_ID(int country_ID) {
+        this.country_ID = country_ID;
     }
 
-    public String getBezeichnung() {
-        return bezeichnung;
+    public String getCountry_Bezeichnung() {
+        return country_Bezeichnung;
     }
 
-    public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
+    public void setCountry_Bezeichnung(String country_Bezeichnung) {
+        this.country_Bezeichnung = country_Bezeichnung;
     }
     
     @Override
     public String toString() {
-        return "ID: " + String.valueOf(iD) + "Bezeichnung: " + String.valueOf(bezeichnung);
+        return " " + String.valueOf(country_ID) + ":   " + String.valueOf(country_Bezeichnung);
     }
     
     

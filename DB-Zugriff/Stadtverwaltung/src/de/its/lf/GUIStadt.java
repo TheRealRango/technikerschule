@@ -6,6 +6,8 @@
 package de.its.lf;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,17 +20,20 @@ public class GUIStadt extends javax.swing.JFrame {
      */
     
     private final LaenderListe laenderListe;
+    private final StaedteListe staedteListe;
     
-    public GUIStadt(LaenderListe laenderListe) throws ClassNotFoundException, SQLException {
+    public GUIStadt(LaenderListe laenderListe, StaedteListe staedteListe) throws ClassNotFoundException, SQLException {
         this.laenderListe = laenderListe;
+        this.staedteListe = staedteListe;
         initComponents();
         loadData();
        
     }
     
     private void loadData() throws ClassNotFoundException, SQLException {
-        laenderListe.get();
-        lst_laender.setListData(laenderListe.get().toArray());
+        //laenderListe.get();
+        lst_laender.setListData(laenderListe.getArray());
+        
     }
 
     /**
@@ -45,7 +50,7 @@ public class GUIStadt extends javax.swing.JFrame {
         lst_laender = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        lst_staedte = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 2));
@@ -56,6 +61,11 @@ public class GUIStadt extends javax.swing.JFrame {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        lst_laender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lst_laenderMouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(lst_laender);
 
@@ -80,12 +90,12 @@ public class GUIStadt extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Städte"));
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        lst_staedte.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Bitte wählen Sie ein Land aus!" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(lst_staedte);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -108,6 +118,23 @@ public class GUIStadt extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lst_laenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lst_laenderMouseClicked
+        // TODO add your handling code here:
+        //int selectedCountry_ID = lst_laender.getSelectedValue();
+        //System.out.println(lst_laender.getSelectedValue());
+        
+        int i = lst_laender.getSelectedIndex();
+        Land land = (Land)lst_laender.getSelectedValue();
+        try {
+            lst_staedte.setListData(staedteListe.getArray(land.getCountry_ID()));
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lst_laenderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -145,11 +172,11 @@ public class GUIStadt extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList lst_laender;
+    private javax.swing.JList lst_staedte;
     // End of variables declaration//GEN-END:variables
 }
