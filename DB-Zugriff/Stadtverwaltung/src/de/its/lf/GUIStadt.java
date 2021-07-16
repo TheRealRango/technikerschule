@@ -19,15 +19,16 @@ public class GUIStadt extends javax.swing.JFrame {
     
     private final LaenderListe laenderListe;
     
-    public GUIStadt(LaenderListe laenderListe) {
+    public GUIStadt(LaenderListe laenderListe) throws ClassNotFoundException, SQLException {
         this.laenderListe = laenderListe;
         initComponents();
+        loadData();
        
     }
     
     private void loadData() throws ClassNotFoundException, SQLException {
         laenderListe.get();
-        //lst_laender.setListData(laenderListe.get());
+        lst_laender.setListData(laenderListe.get().toArray());
     }
 
     /**
@@ -41,20 +42,20 @@ public class GUIStadt extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lst_laender = new javax.swing.JList<>();
+        lst_laender = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jList2 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(1, 2));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Länder"));
 
-        lst_laender.setModel(new javax.swing.AbstractListModel<String>() {
+        lst_laender.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane1.setViewportView(lst_laender);
 
@@ -79,10 +80,10 @@ public class GUIStadt extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Städte"));
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        jList2.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jList2);
 
@@ -144,11 +145,11 @@ public class GUIStadt extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> lst_laender;
+    private javax.swing.JList lst_laender;
     // End of variables declaration//GEN-END:variables
 }

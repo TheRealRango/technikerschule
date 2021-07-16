@@ -30,6 +30,9 @@ public class LaenderListeDB implements LaenderListe {
         
         while (rs.next()){
             Land land = new Land();
+            land.setiD(Integer.parseInt(rs.getString("country_id")));
+            land.setBezeichnung(rs.getString("country"));
+            laenderListe.add(land);
             
         }
         return laenderListe;

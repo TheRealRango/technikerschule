@@ -32,7 +32,7 @@ public class Land {
     
     @Override
     public String toString() {
-        return "ID:" + String.valueOf(iD) + "Bezeichnung: " + String.valueOf(bezeichnung);
+        return "ID: " + String.valueOf(iD) + "Bezeichnung: " + String.valueOf(bezeichnung);
     }
     
     
