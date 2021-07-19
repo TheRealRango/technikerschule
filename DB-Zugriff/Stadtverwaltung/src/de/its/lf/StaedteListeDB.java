@@ -8,6 +8,8 @@ package de.its.lf;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -49,8 +51,22 @@ public class StaedteListeDB implements StaedteListe {
     }
 
     @Override
-    public void insert(Stadt stadt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void insert(Stadt stadt)  {
+        try {
+            dBConnector.connect();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(StaedteListeDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(StaedteListeDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            dBConnector.querydml("INSERT INTO `sakila`.`city` (`city_id`, `city`, `country_id`, `last_update`) VALUES ('601', 'Ostrach', '38', '2021-02-14 04:45:23');");
+        } catch (SQLException ex) {
+            Logger.getLogger(StaedteListeDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
     }
 
     @Override

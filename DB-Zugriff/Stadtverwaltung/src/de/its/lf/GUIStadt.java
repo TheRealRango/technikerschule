@@ -20,19 +20,20 @@ public class GUIStadt extends javax.swing.JFrame {
      */
     private final LaenderListe laenderListe;
     private final StaedteListe staedteListe;
-
+    
     public GUIStadt(LaenderListe laenderListe, StaedteListe staedteListe) throws ClassNotFoundException, SQLException {
         this.laenderListe = laenderListe;
         this.staedteListe = staedteListe;
         initComponents();
         loadData();
-
+        txf_CityID.setEnabled(false);
+        
     }
-
+    
     private void loadData() throws ClassNotFoundException, SQLException {
         //laenderListe.get();
         lst_laender.setListData(laenderListe.getArray());
-
+        
     }
 
     /**
@@ -50,9 +51,17 @@ public class GUIStadt extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lst_staedte = new javax.swing.JList();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txf_CityID = new javax.swing.JTextField();
+        txf_CityBezeichnung = new javax.swing.JTextField();
+        bt_Update = new javax.swing.JButton();
+        bt_Insert = new javax.swing.JButton();
+        bt_Delete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridLayout(1, 2));
+        getContentPane().setLayout(new java.awt.GridLayout(1, 3));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Länder"));
 
@@ -74,14 +83,14 @@ public class GUIStadt extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -94,6 +103,11 @@ public class GUIStadt extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        lst_staedte.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lst_staedteValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lst_staedte);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -102,18 +116,89 @@ public class GUIStadt extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel2);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Details"));
+
+        jLabel1.setText("ID");
+
+        jLabel2.setText("Bezeichnung");
+
+        txf_CityID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txf_CityIDActionPerformed(evt);
+            }
+        });
+
+        bt_Update.setText("Update");
+        bt_Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_UpdateActionPerformed(evt);
+            }
+        });
+
+        bt_Insert.setText("Hinzufügen");
+        bt_Insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_InsertActionPerformed(evt);
+            }
+        });
+
+        bt_Delete.setText("Löschen");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(txf_CityID, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(txf_CityBezeichnung, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_Update))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_Insert))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_Delete))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addGap(6, 6, 6)
+                .addComponent(txf_CityID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel2)
+                .addGap(6, 6, 6)
+                .addComponent(txf_CityBezeichnung, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(bt_Insert)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_Update)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_Delete)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel3);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,7 +210,7 @@ public class GUIStadt extends javax.swing.JFrame {
         if (land != null) {
             try {
                 lst_staedte.setListData(staedteListe.getArray(land.getCountry_ID()));
-
+                
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
@@ -133,6 +218,36 @@ public class GUIStadt extends javax.swing.JFrame {
             }
         }//else errormessage
     }//GEN-LAST:event_lst_laenderValueChanged
+
+    private void txf_CityIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txf_CityIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txf_CityIDActionPerformed
+
+    private void lst_staedteValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_staedteValueChanged
+        // TODO add your handling code here:
+        Stadt stadt = (Stadt) lst_staedte.getSelectedValue();
+        if (stadt != null) {
+            txf_CityID.setText(String.valueOf(stadt.getCity_ID()));
+            txf_CityBezeichnung.setText(stadt.getCity_Bezeichnung());
+        }
+    }//GEN-LAST:event_lst_staedteValueChanged
+
+    private void bt_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_UpdateActionPerformed
+        // TODO add your handling code here:
+        Stadt stadt = (Stadt) lst_staedte.getSelectedValue();
+        stadt.setCity_ID(Integer.valueOf(txf_CityID.getText()));
+        stadt.setCity_Bezeichnung(txf_CityBezeichnung.getText());
+        
+
+    }//GEN-LAST:event_bt_UpdateActionPerformed
+
+    private void bt_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_InsertActionPerformed
+        // TODO add your handling code here:
+        Stadt stadt = new Stadt();
+        stadt.setCity_ID(Integer.valueOf(txf_CityID.getText()));
+        stadt.setCity_Bezeichnung(txf_CityBezeichnung.getText());
+        staedteListe.insert(stadt);
+    }//GEN-LAST:event_bt_InsertActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,11 +285,19 @@ public class GUIStadt extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_Delete;
+    private javax.swing.JButton bt_Insert;
+    private javax.swing.JButton bt_Update;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList lst_laender;
     private javax.swing.JList lst_staedte;
+    private javax.swing.JTextField txf_CityBezeichnung;
+    private javax.swing.JTextField txf_CityID;
     // End of variables declaration//GEN-END:variables
 }
