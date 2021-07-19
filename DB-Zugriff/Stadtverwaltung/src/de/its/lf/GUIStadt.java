@@ -18,22 +18,21 @@ public class GUIStadt extends javax.swing.JFrame {
     /**
      * Creates new form GUIStadt
      */
-    
     private final LaenderListe laenderListe;
     private final StaedteListe staedteListe;
-    
+
     public GUIStadt(LaenderListe laenderListe, StaedteListe staedteListe) throws ClassNotFoundException, SQLException {
         this.laenderListe = laenderListe;
         this.staedteListe = staedteListe;
         initComponents();
         loadData();
-       
+
     }
-    
+
     private void loadData() throws ClassNotFoundException, SQLException {
         //laenderListe.get();
         lst_laender.setListData(laenderListe.getArray());
-        
+
     }
 
     /**
@@ -62,9 +61,9 @@ public class GUIStadt extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        lst_laender.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lst_laenderMouseClicked(evt);
+        lst_laender.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lst_laenderValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(lst_laender);
@@ -119,22 +118,21 @@ public class GUIStadt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lst_laenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lst_laenderMouseClicked
+    private void lst_laenderValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_laenderValueChanged
         // TODO add your handling code here:
-        //int selectedCountry_ID = lst_laender.getSelectedValue();
-        //System.out.println(lst_laender.getSelectedValue());
-        
-        int i = lst_laender.getSelectedIndex();
-        Land land = (Land)lst_laender.getSelectedValue();
-        try {
-            lst_staedte.setListData(staedteListe.getArray(land.getCountry_ID()));
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lst_laenderMouseClicked
+
+        Land land = (Land) lst_laender.getSelectedValue();
+        if (land != null) {
+            try {
+                lst_staedte.setListData(staedteListe.getArray(land.getCountry_ID()));
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(GUIStadt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }//else errormessage
+    }//GEN-LAST:event_lst_laenderValueChanged
 
     /**
      * @param args the command line arguments

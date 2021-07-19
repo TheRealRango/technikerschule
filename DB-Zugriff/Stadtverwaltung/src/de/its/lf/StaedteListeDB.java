@@ -26,8 +26,7 @@ public class StaedteListeDB implements StaedteListe {
         dBConnector.connect();
 
         List<Stadt> staedteListe = new ArrayList<>();
-        ResultSet rs = dBConnector.query("SELECT * from city "
-                + "WHERE country_id =" + country_ID);
+        ResultSet rs = dBConnector.query("SELECT * from city  WHERE country_id =" + country_ID);
         
 
         while (rs.next()) {
@@ -36,6 +35,9 @@ public class StaedteListeDB implements StaedteListe {
             stadt.setCity_Bezeichnung(rs.getString("city"));
             staedteListe.add(stadt);
         }
+        
+        
+        dBConnector.disconnect();
         return staedteListe;
     }
 
@@ -58,6 +60,11 @@ public class StaedteListeDB implements StaedteListe {
 
     @Override
     public void delete(Stadt stadt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Stadt> get() throws ClassNotFoundException, SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

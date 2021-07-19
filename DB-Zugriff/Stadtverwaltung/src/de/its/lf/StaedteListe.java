@@ -15,8 +15,11 @@ import java.util.List;
 public interface StaedteListe {
 
     public List<Stadt> get(int country_ID) throws ClassNotFoundException, SQLException;
+    
+    public List<Stadt> get() throws ClassNotFoundException, SQLException;
 
     public Stadt[] getArray(int country_ID) throws ClassNotFoundException, SQLException;
+    //getmethode für alle Städte
 
     public void insert(Stadt stadt);
 

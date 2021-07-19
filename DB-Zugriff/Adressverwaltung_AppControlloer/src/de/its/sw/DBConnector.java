@@ -27,7 +27,7 @@ public abstract class DBConnector {
     public void disconnect() throws SQLException {
         res.close();
         stat.close();
-        con.close();
+        //con.close();
     }
 
     public ResultSet query(String sql) throws SQLException {

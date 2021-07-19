@@ -35,7 +35,7 @@ public class LaenderListeDB implements LaenderListe {
             laenderListe.add(land);
             
         }
-        
+        dBConnector.disconnect();
         return laenderListe;
     }
     
